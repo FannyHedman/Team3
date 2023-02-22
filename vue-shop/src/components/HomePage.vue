@@ -1,7 +1,5 @@
 <template>
-  <v-main>
-    <router-view />
-  </v-main>
+  <h1>Välkommen till vår vueshop</h1>
 </template>
 
 <script setup>
