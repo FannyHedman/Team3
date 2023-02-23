@@ -1,6 +1,7 @@
 <template>
-<h1></h1>
+  <HomePage />
 </template>
 
 <script setup>
+  import HomePage from '@/components/HomePage.vue'
 </script>
