@@ -15,6 +15,31 @@ const routes = [
         component: () =>
           import(/* webpackChunkName: "home" */ "@/views/HomeView.vue"),
       },
+      {
+        path: '/dam',
+        name: 'Dam',
+        component: () => import('@/views/DamView.vue'),
+      },
+      {
+        path: '/herr',
+        name: 'Herr',
+        component: () => import('@/views/HerrView.vue'),
+      },
+      {
+        path: '/barn',
+        name: 'Barn',
+        component: () => import('@/views/BarnView.vue'),
+      },
+      {
+        path: '/about',
+        name: 'About',
+        component: () => import('@/views/AboutView.vue'),
+      },
+      {
+        path: '/kontakt',
+        name: 'Kontakt',
+        component: () => import('@/views/KontaktView.vue'),
+      },
     ],
   },
 ];
