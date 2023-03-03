@@ -1,8 +1,9 @@
 <template>
   <HeroSlider />
 
-        <HomeComp />
-       
+        <HomeComp :articles="product"
+ />
+
 </template>
 
 <script setup>
