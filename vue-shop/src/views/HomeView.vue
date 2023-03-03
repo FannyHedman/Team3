@@ -1,7 +1,11 @@
 <template>
-  <HomePage />
+  <HeroSlider />
+
+        <HomeComp />
+       
 </template>
 
 <script setup>
-  import HomePage from '@/components/HomePage.vue'
+import HeroSlider from "@/components/HeroSlider.vue";
+import HomeComp from "@/components/HomeComp.vue"
 </script>

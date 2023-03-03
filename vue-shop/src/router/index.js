@@ -45,6 +45,11 @@ const routes = [
         name: "Varukorg",
         component: () => import("@/views/VarukorgView.vue"),
       },
+      {
+        path: '/product',
+        name: 'Product',
+        component: () => import('@/views/ProductView.vue'),
+      },
     ],
   },
 ];

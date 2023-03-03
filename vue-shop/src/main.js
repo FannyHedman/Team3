@@ -2,6 +2,7 @@
  * main.js
  *
  * Bootstraps Vuetify and other plugins then mounts the App`
+ * Importera vuex/store hit också
  */
 
 // Components
