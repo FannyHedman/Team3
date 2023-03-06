@@ -23,7 +23,13 @@
         prepend-inner-icon="mdi-magnify mt-auto w-25"
         :class="{ closed: searchClosed }"
       ></v-text-field>
-      <v-btn icon>
+      <v-btn 
+          icon 
+          :to="{ name: 'favo' }" 
+          title="Favoriter" 
+          value="favo"
+          exact
+          >
         <v-icon>mdi-heart</v-icon>
       </v-btn>
       <v-btn icon>
@@ -92,7 +98,14 @@
             exact
           >
           </v-list-item>
-
+          <v-list-item
+            :to="{ name: 'favo' }"
+            prepend-icon="mdi-heart"
+            title="Favoriter"
+            value="favo"
+            exact
+          >
+          </v-list-item>
         </v-list>
       </v-navigation-drawer>
       <!-- menyn som kommer ut från vänster tar slut här -->
@@ -111,7 +124,13 @@
           :class="{ closed: searchClosed }"
         ></v-text-field>
 
-        <v-btn icon>
+        <v-btn 
+          icon 
+          :to="{ name: 'favo' }" 
+          title="Favoriter" 
+          value="favo"
+          exact
+          >
           <v-icon>mdi-heart</v-icon>
         </v-btn>
         <v-btn icon>
