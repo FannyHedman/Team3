@@ -1,7 +1,6 @@
 <template>
-  <VApp>
     <ProductComp />
-  </VApp>
+
 </template>
 
 <script setup>
