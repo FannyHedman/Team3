@@ -6,7 +6,7 @@
         <v-col cols="4" v-for="product in products" :key="product">
           <v-card width="auto" height="auto" class="mx-auto pb-5"
             ><v-img
-              src="../../public/imgtest/sport-women-large.jpg"
+              src="../../public/Team3-images/Large/Barn/unicorn-kids-large.jpg"
               width="auto"
               height="auto"
             ></v-img>
@@ -39,7 +39,7 @@ export default {
     };
   },
   created() {
-    fetch("/test.json")
+    fetch("/Product.json/")
       .then((response) => response.json())
       .then((result) => {
         this.products = result;
