@@ -85,15 +85,6 @@
           >
           </v-list-item>
           <v-list-item
-<<<<<<< HEAD
-            :to="{ name: 'Varukorg' }"
-            prepend-icon="mdi mdi-cart-outline"
-            title="Varukorg"
-            value="varukorg"
-            exact
-          >
-          </v-list-item>
-=======
             :to="{ name: 'Product' }"
             prepend-icon="mdi-account-box-outline"
             title="Product"
@@ -101,8 +92,14 @@
             exact
           >
           </v-list-item>
-
->>>>>>> 8db83c37151abc7dcd3b6b30f5d258240f24de8c
+          <v-list-item
+            :to="{ name: 'Varukorg' }"
+            prepend-icon="mdi mdi-cart-outline"
+            title="Varukorg"
+            value="varukorg"
+            exact
+          >
+          </v-list-item>
         </v-list>
       </v-navigation-drawer>
       <!-- menyn som kommer ut från vänster tar slut här -->
@@ -170,6 +167,7 @@ export default {
       { name: "barn", route: "/barn" },
       { name: "about", route: "/about" },
       { name: "kontakt", route: "/kontakt" },
+      { name: "varukorg", route: "/varukorg" },
     ],
   }),
 };

@@ -1,34 +1,12 @@
+<!-- <script setup>
+import prodData from "";
+import ref from "vue";
+const products = ref(prodData);
+</script> -->
+
 <template>
   <h2>Min Varukorg</h2>
   <v-card color="transparent" max-width="500" class="mx-auto">
-    <!-- <v-system-bar
-      color="pink darken-2"
-      dark
-    >
-      <v-spacer></v-spacer>
-
-      <v-icon>mdi-window-minimize</v-icon>
-
-      <v-icon>mdi-window-maximize</v-icon>
-
-      <v-icon>mdi-close</v-icon>
-    </v-system-bar>
-
-    <v-app-bar
-      dark
-      color="pink"
-    >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
-
-      <v-toolbar-title>My Music</v-toolbar-title>
-
-      <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-    </v-app-bar> -->
-
     <v-container>
       <v-row flat class="mt-10">
         <v-col cols="12">
@@ -39,9 +17,15 @@
                   color="error"
                   class="prepend-icon= mdi mdi-heart-outline"
                 ></v-icon>
-                <v-card-title class="text-h5"> Strumpa </v-card-title>
+                <v-card-title
+                  v-for="product in products"
+                  :key="product.id"
+                  class="text-h4"
+                >
+                  {{ product.name }}</v-card-title
+                >
 
-                <v-card-subtitle>Najs Stuff till foten</v-card-subtitle>
+                <v-card-subtitle>Lorem ipsum dolor sit.</v-card-subtitle>
                 <v-card-subtitle
                   class="text-subtitle-2 font-weight-black font-weight-bold font-weight-black"
                   >98 pistoler</v-card-subtitle
@@ -49,6 +33,7 @@
 
                 <v-card-actions>
                   <v-btn
+                    @click="delProd(product.id)"
                     prepend-icon="mdi mdi-delete-circle"
                     class="ms-2"
                     variant="outlined"
@@ -82,7 +67,19 @@
   </div>
 </template>
 
-<script setup></script>
+<script>
+export default {
+  name: "App",
+  data() {
+    return {};
+  },
+  // methods(id) {
+  //   delProd{
+  //     this.products = this.products.filter(product => product.id != id)
+  //   }
+  // }
+};
+</script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
@@ -100,7 +97,7 @@ h2::first-letter {
 
 img {
   width: 100px;
-  margin-right: 320px;
+
   margin-bottom: 20px;
 }
 </style>
