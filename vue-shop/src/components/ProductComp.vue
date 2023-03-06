@@ -7,7 +7,7 @@
             <div v-if="product.id === '1'">
               <v-img
                 class="p-img"
-                :src="product.SmallImage"
+                :src="product.LargeImage"
                 alt="image of socks"
               >
               </v-img>
