@@ -99,13 +99,13 @@
             value="varukorg"
           >
           </v-list-item>
-          <v-list
+          <v-list-item
             :to="{ name: 'favo' }"
             prepend-icon="mdi-heart"
             title="Favoriter"
             value="favo"
             exact
-          ></v-list>
+          ></v-list-item>
         </v-list>
       </v-navigation-drawer>
       <!-- menyn som kommer ut från vänster tar slut här -->
