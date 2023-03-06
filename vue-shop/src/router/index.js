@@ -1,5 +1,4 @@
 // Composables
-import ProductdetailsCompVue from "@/components/ProductdetailsComp.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
@@ -42,15 +41,20 @@ const routes = [
         component: () => import("@/views/KontaktView.vue"),
       },
       {
-        path: "/product",
-        name: "Product",
-        component: () => import("@/views/ProductView.vue"),
+        path: "/varukorg",
+        name: "Varukorg",
+        component: () => import("@/views/VarukorgView.vue"),
       },
       {
         path: "/product/:id",
         name: "Productdetails",
         props: true,
         component: ProductdetailsCompVue,
+      },
+      {
+        path: '/favo',
+        name: 'favo',
+        component: () => import('@/views/FavoView.vue'),
       },
     ],
   },
