@@ -2,12 +2,17 @@
   <v-app class="wrapper-hero">
     <v-carousel
       cycle
-      height="500"
+      height="550"
       hide-delimiter-background
-      show-arrows="hover"
+      :show-arrows="false"
     >
       <v-carousel-item v-for="(slide, i) in slides" :key="i">
-        <v-img :src="slide.heroImage" alt="strumpor, kampanj" />
+        <v-img
+          width="800"
+          class="hero-image mt-1"
+          :src="slide.heroImage"
+          alt="strumpor, kampanj"
+        />
         <v-card class="overlay">
           <v-card-text>
             <div class="text-h4">
@@ -19,10 +24,22 @@
         <div class="btn">
           <v-btn @click="onClick">{{ slide.btnAction }}</v-btn>
         </div>
-
       </v-carousel-item>
     </v-carousel>
   </v-app>
+  <!-- <v-container class="wrapper">
+    <v-col>
+      <v-col v-for="n in 4" :key="n" class="image-col" cols="2">
+        <v-img
+          :src="`https://picsum.photos/500/300?image=`"
+          :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
+          aspect-ratio="1"
+          cover
+        >
+        </v-img>
+      </v-col>
+    </v-col>
+  </v-container> -->
 </template>
 
 <script>
@@ -31,17 +48,17 @@ export default {
     return {
       slides: [
         {
-          heroImage: "./public/img/Hero-socks1.jpg",
+          heroImage: "/public/Team3-images/HeroImage/HeroPink.jpg",
           text: "HappyPink ",
           btnAction: "Like",
         },
         {
-          heroImage: "./public/img/Hero-socks2.jpg",
+          heroImage: "/public/Team3-images/HeroImage/HeroBanana.jpg",
           text: "HappyBanana",
           btnAction: "Like",
         },
         {
-          heroImage: "./public/img/Hero-socks3.jpg",
+          heroImage: "/public/Team3-images/HeroImage/HeroPrick.jpg",
           text: "HappyPrick",
           btnAction: "Like",
         },
@@ -58,7 +75,7 @@ export default {
 .overlay {
   position: absolute;
   top: 10vh;
-  left: 45vw;
+  left: 30vw;
   /* display: flex;
   justify-content: center;
   align-items: center; */
@@ -68,10 +85,20 @@ export default {
 .btn {
   position: absolute;
   top: 20vh;
-  left: 50vw;
+  left: 30vw;
   /* display: flex; */
   /* justify-content: center;
   align-items: center; */
   box-shadow: 5px 5px 5px;
+}
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.image-col {
+  display: flex;
+  justify-content: end;
+  align-items: end;
 }
 </style>

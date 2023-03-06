@@ -5,8 +5,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Herr",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Herr/pink-men-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Herr/pink-men-large.jpg",
+        "SmallImage": "Team3-images/Small/Herr/pink-men-small.jpg",
+        "LargeImage": "Team3-images/Large/Herr/pink-men-large.jpg",
         "price": 149
     },
     {
@@ -15,8 +15,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Herr",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Herr/yellowlogo-men-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Herr/yellowlogo-men-large.jpg",
+        "SmallImage": "Team3-images/Small/Herr/yellowlogo-men-small.jpg",
+        "LargeImage": "Team3-images/Large/Herr/yellowlogo-men-large.jpg",
         "price": 149
     },
     {
@@ -25,8 +25,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Herr",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Herr/dots-men-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Herr/dots-men-large.jpg",
+        "SmallImage": "Team3-images/Small/Herr/dots-men-small.jpg",
+        "Large-image": "Team3-images/Large/Herr/dots-men-large.jpg",
         "price": 149
     },
     {
@@ -35,8 +35,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Herr",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Herr/roses-men-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Herr/roses-men-large.jpg",
+        "SmallImage": "Team3-images/Small/Herr/roses-men-small.jpg",
+        "Large-image": "Team3-images/Large/Herr/roses-men-large.jpg",
         "price": 149
     },
     {
@@ -45,8 +45,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Herr",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Herr/cola-men-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Herr/cola-men-large.jpg",
+        "SmallImage": "Team3-images/Small/Herr/cola-men-small.jpg",
+        "Large-image": "Team3-images/Large/Herr/cola-men-large.jpg",
         "price": 149
     },
     {
@@ -55,8 +55,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Herr",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Herr/yellow-men-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Herr/yellow-men-large.jpg",
+        "SmallImage": "Team3-images/Small/Herr/yellow-men-small.jpg",
+        "Large-image": "Team3-images/Large/Herr/yellow-men-large.jpg",
         "price": 149
     },
     {
@@ -65,8 +65,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Dam",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Dam/green-women-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Dam/green-women-large.jpg",
+        "SmallImage": "Team3-images/Small/Dam/green-women-small.jpg",
+        "Large-image": "Team3-images/Large/Dam/green-women-large.jpg",
         "price": 149
     },
     {
@@ -75,8 +75,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Dam",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Dam/cookie-monster-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Dam/cookie-monster-large.jpg",
+        "SmallImage": "Team3-images/Small/Dam/cookie-monster-small.jpg",
+        "Large-image": "Team3-images/Large/Dam/cookie-monster-large.jpg",
         "price": 149
     },
     {
@@ -85,8 +85,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Dam",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Dam/stripes-women-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Dam/stripes-women-large.jpg",
+        "SmallImage": "Team3-images/Small/Dam/stripes-women-small.jpg",
+        "Large-image": "Team3-images/Large/Dam/stripes-women-large.jpg",
         "price": 149
     },
     {
@@ -95,8 +95,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Dam",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Dam/oranges-women-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Dam/oranges-women-large.jpg",
+        "SmallImage": "Team3-images/Small/Dam/oranges-women-small.jpg",
+        "Large-image": "Team3-images/Large/Dam/oranges-women-large.jpg",
         "price": 149
     },
     {
@@ -105,8 +105,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Dam",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Dam/purple-women-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Dam/purple-women-large.jpg",
+        "SmallImage": "Team3-images/Small/Dam/purple-women-small.jpg",
+        "Large-image": "Team3-images/Large/Dam/purple-women-large.jpg",
         "price": 149
     },
     {
@@ -115,8 +115,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["36-41", "42-47"],
         "Gender": "Dam",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Dam/green-women-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Dam/green-women-large.jpg",
+        "SmallImage": "Team3-images/Small/Dam/green-women-small.jpg",
+        "Large-image": "Team3-images/Large/Dam/green-women-large.jpg",
         "price": 149
     },
     {
@@ -125,8 +125,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["0-24m", "2-4y", "5-7y"],
         "Gender": "Barn",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Barn/lips-kids-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Barn/lips-kids-large.jpg",
+        "SmallImage": "Team3-images/Small/Barn/lips-kids-small.jpg",
+        "Large-image": "Team3-images/Large/Barn/lips-kids-large.jpg",
         "price": 79
     },
     {
@@ -135,8 +135,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["0-24m", "2-4y", "5-7y"],
         "Gender": "Barn",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Barn/unicorn-kids-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Barn/unicorn-kids-large.jpg",
+        "SmallImage": "Team3-images/Small/Barn/unicorn-kids-small.jpg",
+        "Large-image": "Team3-images/Large/Barn/unicorn-kids-large.jpg",
         "price": 79
     },
     {
@@ -145,8 +145,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["0-24m", "2-4y", "5-7y"],
         "Gender": "Barn",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Barn/animal-kids-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Barn/animals-kids-large.jpg",
+        "SmallImage": "Team3-images/Small/Barn/animal-kids-small.jpg",
+        "Large-image": "Team3-images/Large/Barn/animals-kids-large.jpg",
         "price": 79
     },
     {
@@ -155,8 +155,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["0-24m", "2-4y", "5-7y"],
         "Gender": "Barn",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Barn/bananas-kids-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Barn/bananas-kids-large.jpg",
+        "SmallImage": "Team3-images/Small/Barn/bananas-kids-small.jpg",
+        "Large-image": "Team3-images/Large/Barn/bananas-kids-large.jpg",
         "price": 79
     },
     {
@@ -165,8 +165,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["0-24m", "2-4y", "5-7y"],
         "Gender": "Barn",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Barn/sport-kids-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Barn/sport-kids-large.jpg",
+        "SmallImage": "Team3-images/Small/Barn/sport-kids-small.jpg",
+        "Large-image": "Team3-images/Large/Barn/sport-kids-large.jpg",
         "price": 79
     },
     {
@@ -175,8 +175,8 @@
         "info": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut morbi tincidunt augue interdum velit euismod in. Tellus orci ac auctor augue mauris augue neque.",
         "size": ["0-24m", "2-4y", "5-7y"],
         "Gender": "Barn",
-        "Small-image": "/vue-shop/public/Team3-images/Small/Barn/pink-kids-small.jpg",
-        "Large-image": "/vue-shop/public/Team3-images/Large/Barn/pink-kids-large.jpg",
+        "SmallImage": "Team3-images/Small/Barn/pink-kids-small.jpg",
+        "Large-image": "Team3-images/Large/Barn/pink-kids-large.jpg",
         "price": 79
     }
 ]
