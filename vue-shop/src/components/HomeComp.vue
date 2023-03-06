@@ -1,91 +1,75 @@
 <template>
-  <div class="text-h5 pa-4">Populärt just nu</div>
-  <v-app>
-    <v-sheet class="mx-auto" elevation="8" max-width="100%">
-      <v-slide-group v-model="model" class="pa-4" show-arrows>
-        <v-slide-group-item
-          v-for="product in products"
-          :key="product.id"
-          v-slot="{ isSelected, toggle }"
-        >
-          <!-- kolla vad isselected är om det gör skillnad -->
-          <v-card
-            color="grey-lighten-1"
-            :class="['ma-4']"
-            height="400"
-            width="300"
-            @click="toggle"
-          >
-            <v-img :src="articles.image" alt="strumpor, kampanj" />
-
-            <v-btn
-              :icon="isSelected ? 'mdi-heart' : 'mdi-heart-outline'"
-            ></v-btn>
-
-            <!-- <div class="d-flex fill-height align-center justify-center">
-              <v-scale-transition>
-                <v-icon
-                  v-if="isSelected"
-                  color="white"
-                  size="48"
-                  icon="mdi-close-circle-outline"
-                ></v-icon>
-
-              </v-scale-transition>
-            </div> -->
-            <v-card class="info">
-              <v-card-text>
-                <div class="text">
-                  {{ product.price }}
-                </div>
-              </v-card-text>
-            </v-card>
-          </v-card>
-        </v-slide-group-item>
-      </v-slide-group>
-    </v-sheet>
-  </v-app>
+  <v-sheet class="mx-auto" elevation="8" max-width="auto">
+    <v-slide-group v-model="model" class="pa-4 mb-4" show-arrows>
+      <v-slide-group-item
+        v-for="product in products"
+        :key="product.id"
+        v-slot="{ toggle }"
+      >
+        <v-card class="ma-6" height="400" width="300" @click="toggle">
+          <div class="container">
+            <v-img :src="product.SmallImage"
+            cover>
+              <v-card class="overlay">
+                <v-card-text>
+                  <v-btn
+                    class="mr-10"
+                    variant="outlined"
+                    icon="mdi-heart"
+                  ></v-btn>
+                  <div class="text">{{ product.price }} :-</div>
+                </v-card-text>
+              </v-card>
+            </v-img>
+          </div>
+        </v-card>
+      </v-slide-group-item>
+    </v-slide-group>
+  </v-sheet>
 </template>
 
 <script>
 export default {
-  props: {
-    articles: {
-      required: true,
-      type: Object,
-    },
-  },
   data() {
     return {
-      products: [],
+      model: null,
+      products: {
+        required: true,
+        type: Object,
+      },
     };
   },
 
   created() {
-    fetch("Product.json")
-      .then((response) => response.json())
-      .then((result) => {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const res = await fetch("Product.json");
+        const result = await res.json();
         this.products = result;
-      });
-    //   async fetchData() {
-    //     try {
-    //       const response = await fetch("Product.json");
-    //       const result = await response.json();
-    //       this.products = result;
-    //     } catch (error) {
-    //       console.log(error);
-    //       this.errorMessage =
-    //         "Produkterna kunde inte laddas, var vänlig testa igen";
-    //     }
-    //   },
+      } catch (error) {
+        console.error(error);
+        this.errorMessage = "Products failed to fetch, please try again!";
+      }
+    },
   },
 };
 </script>
-<style>
-.info {
-  /* display: flex;
-    justify-content: left;
-    align-items: left; */
-  background-color: grey;
+<style scoped>
+.overlay {
+  background-color: black;
+}
+.text {
+  border-radius: 25px;
+  border: 1px solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 45px;
+  margin-left: 80px;
+  margin-top: -45px;
 }
 </style>
