@@ -92,7 +92,6 @@
             exact
           >
           </v-list-item>
-
         </v-list>
       </v-navigation-drawer>
       <!-- menyn som kommer ut från vänster tar slut här -->
@@ -160,6 +159,8 @@ export default {
       { name: "barn", route: "/barn" },
       { name: "about", route: "/about" },
       { name: "kontakt", route: "/kontakt" },
+      { name: "product", route: "/product" },
+      { name: "productdetails", route: "/product/:id" },
     ],
   }),
 };

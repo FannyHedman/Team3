@@ -1,56 +1,64 @@
 // Composables
-import { createRouter, createWebHistory } from 'vue-router'
+import ProductdetailsCompVue from "@/components/ProductdetailsComp.vue";
+import { createRouter, createWebHistory } from "vue-router";
 
 const routes = [
   {
-    path: '/',
-    component: () => import('@/layouts/default/DefaultLayout.vue'),
+    path: "/",
+    component: () => import("@/layouts/default/DefaultLayout.vue"),
     children: [
       {
-        path: '',
-        name: 'Home',
+        path: "",
+        name: "Home",
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
         // which is lazy-loaded when the route is visited.
-        component: () => import(/* webpackChunkName: "home" */ '@/views/HomeView.vue'),
+        component: () =>
+          import(/* webpackChunkName: "home" */ "@/views/HomeView.vue"),
       },
       {
-        path: '/dam',
-        name: 'Dam',
-        component: () => import('@/views/DamView.vue'),
+        path: "/dam",
+        name: "Dam",
+        component: () => import("@/views/DamView.vue"),
       },
       {
-        path: '/herr',
-        name: 'Herr',
-        component: () => import('@/views/HerrView.vue'),
+        path: "/herr",
+        name: "Herr",
+        component: () => import("@/views/HerrView.vue"),
       },
       {
-        path: '/barn',
-        name: 'Barn',
-        component: () => import('@/views/BarnView.vue'),
+        path: "/barn",
+        name: "Barn",
+        component: () => import("@/views/BarnView.vue"),
       },
       {
-        path: '/about',
-        name: 'About',
-        component: () => import('@/views/AboutView.vue'),
+        path: "/about",
+        name: "About",
+        component: () => import("@/views/AboutView.vue"),
       },
       {
-        path: '/kontakt',
-        name: 'Kontakt',
-        component: () => import('@/views/KontaktView.vue'),
+        path: "/kontakt",
+        name: "Kontakt",
+        component: () => import("@/views/KontaktView.vue"),
       },
       {
-        path: '/product',
-        name: 'Product',
-        component: () => import('@/views/ProductView.vue'),
+        path: "/product",
+        name: "Product",
+        component: () => import("@/views/ProductView.vue"),
+      },
+      {
+        path: "/product/:id",
+        name: "Productdetails",
+        props: true,
+        component: ProductdetailsCompVue,
       },
     ],
   },
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
-})
+});
 
-export default router
+export default router;
