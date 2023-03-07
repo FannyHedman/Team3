@@ -1,51 +1,43 @@
-<!-- <script setup>
-import prodData from "";
-import ref from "vue";
-const products = ref(prodData);
-</script> -->
-
 <template>
-  <h2>Min Varukorg</h2>
+  <h2 class="text-h3">VARUKORG</h2>
   <v-card color="transparent" max-width="500" class="mx-auto">
     <v-container>
-      <v-row flat class="mt-10">
+      <v-row flat class="mt-10" no-gutters>
         <v-col cols="12">
           <v-card color="#F6A8B6" theme="light">
             <div class="d-flex ma-1 flex-no-wrap justify-space-between">
-              <div>
-                <v-icon
+              <div class="d-flex flex-wrap justify-space-between">
+                <v-btn
+                  size="x-small"
                   color="error"
-                  class="prepend-icon= mdi mdi-heart-outline"
-                ></v-icon>
-                <v-card-title
-                  v-for="product in products"
-                  :key="product.id"
-                  class="text-h4"
-                >
-                  {{ product.name }}</v-card-title
-                >
+                  class="mx-1 elevation-5"
+                  variant="outlined"
+                  icon="mdi-heart"
+                ></v-btn>
 
-                <v-card-subtitle>Lorem ipsum dolor sit.</v-card-subtitle>
-                <v-card-subtitle
-                  class="text-subtitle-2 font-weight-black font-weight-bold font-weight-black"
-                  >98 pistoler</v-card-subtitle
+                <v-card-title class="text-h4 mx-10"> Strumpor</v-card-title>
+
+                <v-card-subtitle class="text-h6 font-weight-bold mx-4"
+                  >Precious strumpa till kidsen</v-card-subtitle
+                >
+                <v-card-subtitle class="text-h7 font-weight-medium mx-4">
+                  98 kr</v-card-subtitle
                 >
 
                 <v-card-actions>
                   <v-btn
-                    @click="delProd(product.id)"
-                    prepend-icon="mdi mdi-delete-circle"
-                    class="ms-2"
-                    variant="outlined"
+                    class="ms-2 mx-12 elevation-4"
+                    color="black"
                     size="small"
                   >
+                    <v-icon>mdi mdi-delete-circle</v-icon>
                     Ta Bort vara
                   </v-btn>
                 </v-card-actions>
               </div>
 
-              <v-avatar class="mt-4 mr-2" size="125" rounded="0">
-                <v-img src="happykiddo.png"></v-img>
+              <v-avatar class="mt-1 mr-2" size="125" rounded="0">
+                <v-img src="../assets/logo.png"></v-img>
               </v-avatar>
             </div>
           </v-card>
@@ -55,13 +47,15 @@ const products = ref(prodData);
   </v-card>
   <div class="d-flex justify-center">
     <v-card-actions>
-      <v-btn append-icon="mdi mdi-arrow-left-circle" variant="outlined"
-        >Tillbaka</v-btn
+      <v-btn to="/" color="#F3EDB0" variant="outlined">
+        <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
+        Tillbaka</v-btn
       >
     </v-card-actions>
     <v-card-actions>
-      <v-btn append-icon="mdi mdi-cart-outline" variant="outlined"
-        >Till Kassa</v-btn
+      <v-btn color="#87cefa" variant="outlined">
+        <v-icon class="mx-2" small right>mdi-cart-outline</v-icon>
+        Till Kassa</v-btn
       >
     </v-card-actions>
   </div>
@@ -69,15 +63,29 @@ const products = ref(prodData);
 
 <script>
 export default {
-  name: "App",
   data() {
-    return {};
+    return {
+      products: {
+        required: true,
+        type: Object,
+      },
+    };
   },
-  // methods(id) {
-  //   delProd{
-  //     this.products = this.products.filter(product => product.id != id)
-  //   }
-  // }
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    async fetchData() {
+      try {
+        const res = await fetch("Product.json");
+        const result = await res.json();
+        this.products = result;
+      } catch (error) {
+        console.error(error);
+        this.errorMessage = "Products failed to fetch, please try again!";
+      }
+    },
+  },
 };
 </script>
 
@@ -86,13 +94,13 @@ export default {
 h2 {
   color: #87cefa;
   font-family: "Cutive Mono", monospace;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.8rem;
   font-size: 28px;
   text-align: center;
   margin-top: 20px;
 }
 h2::first-letter {
-  color: #f3edb0;
+  color: #f6a8b6;
 }
 
 img {
