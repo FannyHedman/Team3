@@ -8,8 +8,14 @@
             class="my-1"
             v-for="product in products"
             :key="product.name"
-            color="#F6A8B6"
             theme="light"
+            style="
+              background-image: linear-gradient(
+                to right,
+                #fa709a 0%,
+                #fee140 100%
+              );
+            "
           >
             <div class="d-flex my-3 mx-3">
               <div class="d-flex flex-wrap">
@@ -25,11 +31,11 @@
                     {{ product.name }}</v-card-title
                   >
 
-                  <!-- <v-card-subtitle class="text-h6 font-weight-bold"
-                    >hej</v-card-subtitle
-                  > -->
                   <v-card-title class="text-h7 font-weight-medium mx-11">
-                    {{ product.price }}kr</v-card-title
+                    Storlek: {{ product.size }}</v-card-title
+                  >
+                  <v-card-title class="text-h7 font-weight-medium mx-11">
+                    Pris: {{ product.price }}kr</v-card-title
                   >
                 </div>
                 <v-card-actions>
@@ -117,10 +123,7 @@ h2 {
 h2::first-letter {
   color: #f6a8b6;
 }
-
-img {
-  width: 100px;
-
-  margin-bottom: 20px;
+.testcolor {
+  background-color: black;
 }
 </style>
