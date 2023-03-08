@@ -26,7 +26,7 @@
       <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
-      <v-btn icon>
+      <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
         <v-icon>mdi-cart</v-icon>
       </v-btn>
     </v-app-bar>
@@ -39,7 +39,7 @@
           <v-list-item
             :to="{ name: 'Home' }"
             prepend-icon="mdi-home"
-            title="Home"
+            title="Hem"
             value="home"
             exact
           >
@@ -167,7 +167,7 @@ export default {
     searchClosed: true,
     drawer: false,
     links: [
-      { name: "home", route: "/" },
+      { name: "hem", route: "/" },
       { name: "dam", route: "/dam" },
       { name: "herr", route: "/herr" },
       { name: "barn", route: "/barn" },
