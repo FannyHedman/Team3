@@ -20,10 +20,11 @@
                 ><v-spacer></v-spacer
                 ><v-card-actions>
                   <v-btn
-                    class="mr-5 mt-5"
+                    class="add"
                     variant="outlined"
                     icon="mdi-heart"
-                  ></v-btn></v-card-actions
+                  ></v-btn>
+                  </v-card-actions
               ></v-row></div>
             </v-card>
           </div>
@@ -52,5 +53,11 @@ export default {
         this.products = result;
       });
   },
+  props: ['product'],
+  computed: {
+    product_total() {
+      return 56
+    }
+  } 
 };
 </script>

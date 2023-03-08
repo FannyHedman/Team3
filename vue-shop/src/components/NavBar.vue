@@ -1,7 +1,6 @@
 <template>
   <v-card>
     <h1>Hej Richard</h1>
-    <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
     <v-app-bar color="red" prominent>
       <v-app-bar-nav-icon
         variant="text"
@@ -46,11 +45,3 @@ export default {
 </script>
 
 <script setup></script>
-
-<!-- <style scoped>
-@media all and (max-width: 400px) {
-.dropdown {
-position: absolute;
-top: 0;
-}}
-</style> -->
