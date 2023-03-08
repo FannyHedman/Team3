@@ -1,118 +1,153 @@
 <template>
-  <VApp>
-    <div class="banner">
-      <div class="container">
-        <div class="main-banner">
-          <div class="img-container">
-            <img
-              src="@/assets/images/animals-kids-large.jpg"
-              alt="black socks"
-            />
-            <div class="img-content">
-              <h3>Harriet ankle</h3>
+  <div class="banner">
+    <div class="container">
+      <div class="main-banner">
+        <div class="img-container">
+          <div v-for="product in products" :key="product.id">
+            <div v-if="product.id === '1'">
+              <v-img
+                class="p-img"
+                :src="product.LargeImage"
+                alt="image of socks"
+              >
+              </v-img>
             </div>
           </div>
-          <div class="product-detail">
-            <div class="sticky-container">
-              <div class="product-form">
-                <v-card class="p-overlay">
-                  <v-card-text>
-                    <div class="text-h4">
-                      <div class="title">Title harriet</div>
-                    </div>
-                    <div class="text-h6">
-                      <div class="price-container">
-                        <div class="price">SEK</div>
-                        <div classs="rating">xxxxx (6)</div>
-                        <!--Current price-->
-                        <!--Rating-->
+        </div>
+        <div class="product-detail">
+          <div class="sticky-container">
+            <div class="product-form">
+              <v-card class="p-overlay">
+                <v-card-text class="text-h4">
+                  <div>
+                    <div v-for="product in products" :key="product.id">
+                      <div v-if="product.id === '1'">
+                        {{ product.name }}
+                        <div class="text-h6">
+                          <div class="price-container">
+                            <div class="price">{{ product.price }}</div>
+                            <div classs="rating">xxxxx (6)</div>
+                            <!--Current price-->
+                            <!--Rating-->
+                          </div>
+                        </div>
                       </div>
                     </div>
-                    <div class="size-selector">
-                      <v-row justify="left" class="ma-2">
-                        <v-col sm="12"
+                  </div>
+                  <div class="size-selector">
+                    <v-row justify="center" class="ma-2">
+                      <v-col sm="13"
+                        ><v-select
+                          label="Antal"
+                          :items="quantity"
+                          outlined
+                        ></v-select
+                      ></v-col>
+                    </v-row>
+                    <div class="bajs">
+                      <v-row
+                        justify="left"
+                        class="ma-2"
+                        v-for="item in items"
+                        :key="item.id"
+                        v-show="true"
+                      >
+                        <v-col sm="12" v-if="item.id === '1'"
                           ><v-select
                             label="Size"
-                            :items="items"
+                            :items="item.size"
                             variant="outlined"
                           ></v-select
                         ></v-col>
                       </v-row>
-                      <div class="quantity-submit">
-                        <v-btn size="x-large" color="#026CAD">
-                          LÄGG TILL I KUNDKORG
-                        </v-btn>
-                        <v-btn icon="mdi-heart" color="#F6A8B6">
-                        </v-btn>
-                        <!--Button och span med icon hjärta-->
-                      </div>
                     </div>
-                    <v-card class="p-underlay">
-                      <v-card-text>
-                        <div class="text-subtitle-1">
-                          Gratis leveranser till Sverige inom 1-3 arbetsdagar.
-                          <br />
-                          * Gratis klimatkompenseade leveranser
-                        </div>
-                      </v-card-text>
-                    </v-card>
-                  </v-card-text>
-                </v-card>
-              </div>
+                    <div class="quantity-submit">
+                      <v-btn size="x-large" color="#026CAD">
+                        LÄGG TILL I KUNDKORG
+                      </v-btn>
+                      <v-btn icon="mdi-heart" color="#F6A8B6"> </v-btn>
+                      <!--Button och span med icon hjärta-->
+                    </div>
+                  </div>
+                  <v-card class="p-underlay">
+                    <v-card-text>
+                      <div class="text-subtitle-1">
+                        Gratis leveranser till Sverige inom 1-3 arbetsdagar.
+                        <br />
+                        * Gratis klimatkompenseade leveranser
+                      </div>
+                    </v-card-text>
+                  </v-card>
+                </v-card-text>
+              </v-card>
             </div>
           </div>
-        </div>
-        <div class="product-banner">
-          <div class="ab">
-            <div class="ab-one">
-              <span @click="onPush1"> Produktbeskriving</span>
-            </div>
-            <div class="ab-two">
-              <span @click="onPush2">Material ursprung</span>
-            </div>
-            <div class="ab-three">
-              <span @click="onPush3">Frakt och retur</span>
-            </div>
-          </div>
-        </div>
-        <div class="product-description">
-          <div class="pd">
-            <!--Produkt beskriving -->
-            <h3 class="font-weight-bold">Lorem ipsum</h3>
-            <p id="pb-one">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero ipsa
-              quisquam cupiditate earum blanditiis. Nobis facilis omnis alias
-              iste iure? Lorem ipsum dolor sit amet consectetur adipisicing
-              elit. Nulla ipsam debitis deleniti minima et laudantium? Odit
-              aperiam et id rem illo. Expedita labore consequuntur a facilis.
-              Earum totam optio nisi expedita debitis, nostrum veritatis iure
-              quos deserunt. Eligendi odio tempora consectetur, quos quam
-              perferendis. Corporis omnis animi odio harum excepturi fuga
-              aperiam ducimus veritatis hic suscipit error, numquam totam
-              exercitationem.
-            </p>
-
-          </div>
-          <!--Material ursprung-->
-          <!--Frakt och retur-->
         </div>
       </div>
+      <div class="product-banner">
+        <div class="pb">
+          <div class="pb-one">
+            <span> Produktbeskriving</span>
+          </div>
+        </div>
+      </div>
+      <div class="product-description">
+        <div class="pd">
+          <!--Produkt beskriving -->
+          <div>
+            <v-data-table>
+              <tbody id="tBody">
+                <v-btn
+                  name="Lägg till"
+                  type="button"
+                  value="product.id"
+                  @click="fetchProducts"
+                  >Läggetil</v-btn
+                >
+              </tbody>
+            </v-data-table>
+          </div>
+          <h3 class="font-weight-bold">Lorem ipsum</h3>
+          <div v-for="product in products" :key="product.id">
+            <div class="p-info" v-if="product.id === '1'">
+              {{ product.info }}
+            </div>
+          </div>
+        </div>
+        <!--Material ursprung-->
+        <!--Frakt och retur-->
+      </div>
     </div>
-  </VApp>
+  </div>
 </template>
 
 <script>
 export default {
-  name: "App",
   data: () => ({
-    items: ["XS", "S", "M", "L"],
+    model: null,
+    products: {
+      required: true,
+      type: Object,
+    },
+    quantity: ["1", "2", "3", "4"],
+    items: [],
   }),
+  methods: {
+    fetchProducts() {
+      fetch("Product.json")
+        .then((res) => res.json())
+        .then((data) => {
+          this.products = data;
+          this.items = data.size;
+        });
+    },
+  },
 };
 </script>
 
 <script setup></script>
 <style scoped>
-img {
+.p-img {
   width: 100%;
 }
 .banner .container {
@@ -183,9 +218,7 @@ img {
   height: 70%;
   width: 100%;
 }
-.ab {
-  display: flex;
-  justify-content: space-between;
+.pb {
   padding-top: 5px;
 }
 span {
@@ -200,11 +233,11 @@ span {
   height: 100%;
   border-top: 1px grey solid;
   margin-bottom: 10%;
+  margin-top: 3%;
 }
 .p-underlay {
   background-color: white;
   color: black;
   margin-top: 50px;
 }
-
 </style>
