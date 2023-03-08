@@ -1,17 +1,11 @@
 <template>
-  <div class="banner">
+  <div class="banner-page">
     <div class="container">
       <div class="main-banner">
         <div class="img-container">
-          <div v-for="product in products" :key="product.id">
-            <div v-if="product.id === post">
-              <v-img
-                width="auto"
-                height="auto"
-                :src="product.LargeImage"
-                alt="image of socks"
-              >
-              </v-img>
+          <div>
+            <div>
+              <v-img width="auto" height="auto" alt="image of socks"> </v-img>
             </div>
           </div>
         </div>
@@ -21,12 +15,12 @@
               <v-card class="p-overlay">
                 <v-card-text class="text-h4">
                   <div>
-                    <div v-for="product in products" :key="product.id">
-                      <div v-if="product.id === post">
-                        {{ product.name }}
+                    <div>
+                      <div>
+                        {{ post.name }}
                         <div class="text-h6">
                           <div class="price-container">
-                            <div class="price">{{ product.price }} SEK</div>
+                            <div class="price">{{ post.price }} SEK</div>
                             <div classs="rating">xxxxx (6)</div>
                             <!--Current price-->
                             <!--Rating-->
@@ -45,8 +39,8 @@
                         ></v-select
                       ></v-col>
                     </v-row>
-                    <div v-for="product in products" :key="product.id">
-                      <div v-if="product.id === post">
+                    <div>
+                      <div>
                         <v-row justify="center" class="ma-2">
                           <v-col sm="13"
                             ><v-select
@@ -92,30 +86,8 @@
       <div class="product-description">
         <div class="pd">
           <!--Produkt beskriving -->
-          <div>
-            <v-data-table>
-              <tbody id="tBody">
-                <v-btn
-                  name="Lägg till"
-                  type="button"
-                  value="product.id"
-                  @click="fetchProducts"
-                  >Create product</v-btn
-                >
-              </tbody>
-            </v-data-table>
-          </div>
-          <h3 class="font-weight-bold">Lorem ipsum</h3>
-          <div v-if="products !== null">
-            <div class="p-info" v-for="product in products" :key="product.id">
-              {{ product.info }}
-              <h1>
-                <router-link :to="`product/${product.id}`">{{
-                  product.name
-                }}</router-link>
-              </h1>
-            </div>
-          </div>
+          <h3 class="font-weight-bold">{{ this.id }}</h3>
+          <router-link to="/product">back to post</router-link>
         </div>
         <!--Material ursprung-->
         <!--Frakt och retur-->
@@ -125,51 +97,31 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
+  name: "BannerPage",
   data() {
     return {
-      post: "5",
-      model: null,
-      product: [],
-      products: [],
-      quantity: ["1", "2", "3", "4"],
-      items: [],
+      name: "",
+      size: "",
+      info: "",
+      price: "",
+      id: this.$route.params.id,
+      post: {},
+      items: ["1", "2"],
+      quantity: ["1", "2", "3"],
     };
   },
-  created() {
-    // this.$watch(
-    //   () => this.$route.params,
-    //   () => {
-    //     this.fetchId();
-    //   },
-    //   { immediate: true }
-    // );
-    this.fetchProducts();
-    // this.id = this.$route.params.id;
-    // fetch(`product.json?id=${this.id}`).then((res) => {
-    //   this.post = res.data[this.id];
-    // });
-  },
-  methods: {
-    // fetchId() {
-    //   fetch(`product.json/${this.$route.params.id}`)
-    //     .then((res) => res.json())
-    //     .then((result) => {
-    //       this.product = result;
-    //     });
-
-    fetchProducts() {
-      //   this.id = this.$route.params.id;
-      fetch(`product.json`)
-        .then((res) => res.json())
-        .then((data) => {
-          this.products = data;
-          this.items = data.size;
-        });
-    },
+  mounted() {
+    let self = this;
+    axios.get("Product.json/" + this.$route.params.id).then((result) => {
+      self.post = result.data;
+      console.log(self.post);
+    });
   },
 };
 </script>
+
 <script setup></script>
 <style scoped>
 .banner .container {
