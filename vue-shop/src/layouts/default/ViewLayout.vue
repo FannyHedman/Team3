@@ -127,7 +127,7 @@
         <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
-        <v-btn icon>
+        <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
           <v-icon>mdi-cart</v-icon>
         </v-btn>
       </v-app-bar>
@@ -173,7 +173,6 @@ export default {
       { name: "barn", route: "/barn" },
       { name: "about", route: "/about" },
       { name: "kontakt", route: "/kontakt" },
-      { name: "varukorg", route: "/varukorg" },
     ],
   }),
 };
