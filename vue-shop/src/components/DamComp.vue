@@ -10,10 +10,10 @@
           sm="4"
           md="4"
           cols="4"
-          v-for="product in products"
+          v-for="product in products.filter(product => product.Gender === 'Dam')"
           :key="product.Gender"
         >
-          <div v-if="product.Gender === 'Dam'">
+          <div>
             <v-hover v-slot="{ isHovering, props }">
               <v-card
                 max-width="400"
@@ -44,11 +44,9 @@
                 ></v-img>
                 <v-row justify="start">
                   <v-card-item class="mt-5 ml-3">
-                    <v-title>{{ product.name }}</v-title
-                    ><v-spacer></v-spacer>
-                    <v-subtitle
-                      >{{ product.price }} SEK</v-subtitle
-                    ></v-card-item
+                    <h3>{{ product.name }}</h3>
+                    <v-spacer></v-spacer>
+                    <p>{{ product.price }} SEK</p></v-card-item
                   ><v-spacer></v-spacer
                   ><v-card-actions>
                     <v-btn
@@ -57,8 +55,10 @@
                       value="Info"
                       exact
                       class="mr-5 mt-5"
-                      >INFO</v-btn
-                    ><v-btn icon small @click="addToFavorites(product)">
+                    >
+                      INFO
+                    </v-btn>
+                    <v-btn icon small @click="addToFavorites(product)">
                       <v-icon>{{
                         isFavorite(product) ? "mdi-heart" : "mdi-heart-outline"
                       }}</v-icon>

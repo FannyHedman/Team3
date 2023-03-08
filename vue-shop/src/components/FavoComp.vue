@@ -10,7 +10,7 @@
         md="3"
       >
         <v-card>
-          <v-img :src="favorite.SmallImage" aspect-ratio="1"></v-img>
+          <v-img :src="favorite.SmallImage"></v-img>
           <v-card-title>{{ favorite.name }}</v-card-title>
           <v-card-actions>
             <v-btn icon small @click="addToFavorites(favorite)">
