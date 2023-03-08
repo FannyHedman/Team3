@@ -8,22 +8,22 @@
     >
       <v-carousel-item v-for="(slide, i) in slides" :key="i">
         <v-img
-          width="800"
-          class="hero-image mt-1"
+          class="hero-image mt-2"
           :src="slide.heroImage"
           alt="strumpor, kampanj"
         />
-        <v-card class="overlay">
-          <v-card-text>
-            <div class="text-h4">
-              {{ slide.text }}
-            </div>
-          </v-card-text>
-        </v-card>
-
-        <div class="btn">
-          <v-btn @click="onClick">{{ slide.btnAction }}</v-btn>
-        </div>
+        <v-container class="hero-text-btn">
+          <v-card class="socks-name">
+            <v-card-text>
+              <div class="text-h4">
+                {{ slide.text }}
+              </div>
+            </v-card-text>
+          </v-card>
+          <div class="btn">
+            <v-btn @click="onClick">{{ slide.btnAction }}</v-btn>
+          </div>
+        </v-container>
       </v-carousel-item>
     </v-carousel>
   </v-app>
@@ -72,33 +72,44 @@ export default {
 </script>
 
 <style scoped>
-.overlay {
-  position: absolute;
-  top: 10vh;
-  left: 30vw;
-  /* display: flex;
+.hero-text-btn {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
-  align-items: center; */
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 20%;
+  width: 100%;
+  height: 40%;
+  padding: 20px;
+}
+.socks-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   box-shadow: 10px 5px 5px #000000;
   background-color: #87cefa;
 }
 .btn {
-  position: absolute;
-  top: 20vh;
-  left: 30vw;
-  /* display: flex; */
-  /* justify-content: center;
-  align-items: center; */
+  position: relative;
   box-shadow: 5px 5px 5px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1px;
 }
+
 .hero-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-.image-col {
+/* .image-col {
   display: flex;
   justify-content: end;
   align-items: end;
-}
+} */
 </style>

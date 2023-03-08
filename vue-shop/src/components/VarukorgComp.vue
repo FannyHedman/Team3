@@ -1,64 +1,65 @@
 <template>
-  <h2 class="text-h3">VARUKORG</h2>
+  <h2>VARUKORG</h2>
   <v-card color="transparent" max-width="900" class="mx-auto">
     <v-container>
       <v-row flat class="mt-10 mb-5" no-gutters>
         <v-col cols="12">
-          <v-card
-            class="my-1"
-            v-for="product in products"
-            :key="product.name"
-            theme="light"
-            style="
-              background-image: linear-gradient(
-                to right,
-                #fa709a 0%,
-                #fee140 100%
-              );
-            "
-          >
-            <div class="d-flex my-3 mx-3">
-              <div class="d-flex flex-wrap">
-                <v-btn
-                  size="x-small"
-                  color="error"
-                  class="mx-1 elevation-5"
-                  variant="outlined"
-                  icon="mdi-heart"
-                ></v-btn>
-                <div class="d-flex flex-column justify-center">
-                  <v-card-title class="text-h4 mx-10">
-                    {{ product.name }}</v-card-title
-                  >
-
-                  <v-card-title class="text-h7 font-weight-medium mx-11">
-                    Storlek: {{ product.size }}</v-card-title
-                  >
-                  <v-card-title class="text-h7 font-weight-medium mx-11">
-                    Pris: {{ product.price }}kr</v-card-title
-                  >
-                </div>
-                <v-card-actions>
+          <div v-for="product in products" :key="product.id">
+            <v-card
+              class="my-1"
+              theme="light"
+              style="
+                background-image: linear-gradient(
+                  to right,
+                  #fa709a 0%,
+                  #fee140 100%
+                );
+              "
+            >
+              <div class="d-flex my-3 mx-3">
+                <div class="d-flex flex-wrap">
                   <v-btn
-                    class="ms-2 mx-12 elevation-2"
-                    color="black"
-                    size="small"
-                  >
-                    <v-icon>mdi mdi-delete-circle</v-icon>
-                    Ta Bort vara
-                  </v-btn>
-                </v-card-actions>
-              </div>
+                    size="x-small"
+                    color="error"
+                    class="mx-1 elevation-5"
+                    variant="outlined"
+                    icon="mdi-heart"
+                  ></v-btn>
+                  <div class="d-flex flex-column justify-center">
+                    <v-card-title class="text-h4 mx-10">
+                      {{ product.name }}</v-card-title
+                    >
 
-              <v-avatar class="mt-1 ml-16" size="275" rounded="0">
-                <v-img
-                  :src="product.LargeImage"
-                  width="400"
-                  height="400"
-                ></v-img>
-              </v-avatar>
-            </div>
-          </v-card>
+                    <v-card-title class="text-h7 font-weight-medium mx-11">
+                      Storlek: {{ product.size }}</v-card-title
+                    >
+                    <v-card-title class="text-h7 font-weight-medium mx-11">
+                      Pris: {{ product.price }}kr</v-card-title
+                    >
+                  </div>
+                  <v-card-actions>
+                    <v-btn
+                      @click.stop="delProd(product.id)"
+                      class="ms-2 mx-12 elevation-2"
+                      color="white"
+                      size="small"
+                    >
+                      <v-icon>mdi mdi-delete-circle</v-icon>
+                      Ta Bort vara
+                    </v-btn>
+                  </v-card-actions>
+                </div>
+
+                <v-avatar class="mt-1 ml-16" size="275" rounded="0">
+                  <v-img
+                    :src="product.LargeImage"
+                    width="400"
+                    height="400"
+                  ></v-img>
+                </v-avatar>
+              </div>
+            </v-card>
+          </div>
         </v-col>
       </v-row>
     </v-container>
@@ -87,6 +88,8 @@ export default {
         required: true,
         price: "",
         name: "",
+        size: "",
+
         type: Object,
       },
     };
@@ -106,17 +109,25 @@ export default {
       }
     },
   },
-  removeItem() {},
+  delProd(id) {
+    this.products = this.products.filter((product) => product.id !== id);
+  },
 };
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rampart+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
+
 h2 {
   color: #87cefa;
-  font-family: "Cutive Mono", monospace;
-  letter-spacing: 0.8rem;
-  font-size: 28px;
+  /* font-family: "Cutive Mono", monospace; */
+  /* font-family: "Rampart One", cursive; */
+
+  font-family: "Rubik Vinyl", cursive;
+  letter-spacing: 4rem;
+  font-size: 38px;
   text-align: center;
   margin-top: 20px;
 }
