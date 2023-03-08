@@ -1,32 +1,28 @@
 <template>
-     <v-card>
+  <v-card>
     <h1>Hej Richard</h1>
-    <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->    
-    <v-app-bar color="red" prominent
-      >     
+    <!-- <v-system-bar color="deep-purple darken-3"></v-system-bar> -->
+    <v-app-bar color="red" prominent>
       <v-app-bar-nav-icon
         variant="text"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon
-      >       <v-toolbar-title>My files</v-toolbar-title>      
-      <v-spacer></v-spacer>      
-      <v-btn variant="text" icon="mdi-magnify"></v-btn>      
-      <v-btn variant="text" icon=""></v-btn>      
-      <v-btn variant="text" icon="mdi-dots-vertical"></v-btn>    </v-app-bar
-    >    
+      ><v-toolbar-title>My files</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn variant="text" icon="mdi-magnify"></v-btn>
+      <v-btn variant="text" icon=""></v-btn>
+      <v-btn variant="text" icon="mdi-dots-vertical"></v-btn
+    ></v-app-bar>
     <v-navigation-drawer
       class="dropdown"
       v-model="drawer"
       location="left"
       temporary
-      >      <v-list :items="items"></v-list>    </v-navigation-drawer
-    >    
-    <v-main style="height: 10px"
-      >      <v-card-text>        Hejdär     </v-card-text>    </v-main
-    >   
+      ><v-list :items="items"></v-list
+    ></v-navigation-drawer>
+    <v-main style="height: 10px"><v-card-text>Hejdär</v-card-text></v-main>
   </v-card>
 </template>
- 
 <script>
 export default {
   data: () => ({
@@ -46,13 +42,13 @@ export default {
   },
 };
 </script>
- 
+
 <script setup></script>
- 
+
 <!-- <style scoped>
-@media all and (max-width: 400px) { 
-.dropdown { 
- position: absolute;   
+@media all and (max-width: 400px) {
+.dropdown {
+ position: absolute;
  top: 0;
 }}
 </style> -->
