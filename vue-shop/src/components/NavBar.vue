@@ -42,3 +42,11 @@ export default {
 };
 </script>
 <script setup></script>
+
+<!-- <style scoped>
+@media all and (max-width: 400px) {
+.dropdown {
+position: absolute;
+top: 0;
+}}
+</style> -->
