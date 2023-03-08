@@ -1,6 +1,5 @@
 <template>
-    <ProductComp />
-
+  <ProductComp />
 </template>
 
 <script setup>
