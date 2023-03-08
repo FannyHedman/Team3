@@ -1,7 +1,7 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
 import TestCompVue from "@/components/TestComp.vue";
-import axios from "axios";
+
 
 const routes = [
   {
