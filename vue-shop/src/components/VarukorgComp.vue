@@ -1,140 +1,76 @@
 <template>
-  <h2>VARUKORG</h2>
-  <v-card color="transparent" max-width="900" class="mx-auto">
+  <v-app>
     <v-container>
-      <v-row flat class="mt-10 mb-5" no-gutters>
-        <v-col cols="12">
-          <div v-for="product in products" :key="product.id">
-            <v-card
-              class="my-1"
-              theme="light"
-              style="
-                background-image: linear-gradient(
-                  to right,
-                  #fa709a 0%,
-                  #fee140 100%
-                );
-              "
-            >
-              <div class="d-flex my-3 mx-3">
-                <div class="d-flex flex-wrap">
-                  <v-btn
-                    size="x-small"
-                    color="error"
-                    class="mx-1 elevation-5"
-                    variant="outlined"
-                    icon="mdi-heart"
-                  ></v-btn>
-                  <div class="d-flex flex-column justify-center">
-                    <v-card-title class="text-h4 mx-10">
-                      {{ product.name }}</v-card-title
-                    >
-
-                    <v-card-title class="text-h7 font-weight-medium mx-11">
-                      Storlek: {{ product.size }}</v-card-title
-                    >
-                    <v-card-title class="text-h7 font-weight-medium mx-11">
-                      Pris: {{ product.price }}kr</v-card-title
-                    >
-                  </div>
-                  <v-card-actions>
-                    <v-btn
-                      @click.stop="delProd(product.id)"
-                      class="ms-2 mx-12 elevation-2"
-                      color="white"
-                      size="small"
-                    >
-                      <v-icon>mdi mdi-delete-circle</v-icon>
-                      Ta Bort vara
-                    </v-btn>
-                  </v-card-actions>
-                </div>
-
-                <v-avatar class="mt-1 ml-16" size="275" rounded="0">
-                  <v-img
-                    :src="product.LargeImage"
-                    width="400"
-                    height="400"
-                  ></v-img>
-                </v-avatar>
-              </div>
-            </v-card>
-          </div>
-        </v-col>
-      </v-row>
+      <h2>Shopping cart</h2>
+      <v-list>
+        <v-list-item v-for="(item, index) in cartItems" :key="index">
+          <v-list-item-title
+            >{{ item.name }} ({{ item.quantity }})</v-list-item-title
+          >
+          <v-list-item-subtitle>{{ item.price }} SEK</v-list-item-subtitle>
+          <v-btn color="red" small @click="removeItem(index)">Remove</v-btn>
+        </v-list-item>
+      </v-list>
+      <h3>Total amount: {{ totalAmount }} SEK</h3>
     </v-container>
-  </v-card>
-  <div class="d-flex justify-center mb-5">
-    <v-card-actions>
-      <v-btn to="/" color="#F3EDB0" variant="outlined">
-        <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
-        Tillbaka</v-btn
-      >
-    </v-card-actions>
-    <v-card-actions>
-      <v-btn color="#87cefa" variant="outlined">
-        <v-icon class="mx-2" small right>mdi-cart-outline</v-icon>
-        Till Kassa</v-btn
-      >
-    </v-card-actions>
-  </div>
+  </v-app>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      products: {
-        required: true,
-        price: "",
-        name: "",
-        size: "",
-
-        type: Object
-      }
+      name: "",
+      price: "",
+      socks: [],
+      cartItems: [],
     };
   },
   created() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const res = await fetch("Product.json");
-        const result = await res.json();
-        this.products = result;
-      } catch (error) {
-        console.error(error);
-        this.errorMessage = "Products failed to fetch, please try again!";
-      }
+    axios
+      .get("/Product.json")
+      .then((response) => {
+        this.products = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    if (localStorage.getItem("cartItems")) {
+      this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
     }
   },
-  delProd(id) {
-    this.products = this.products.filter(product => product.id !== id);
-  }
+  computed: {
+    totalAmount() {
+      return this.cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    },
+  },
+  methods: {
+    addToCart(sock) {
+      const existingItem = this.cartItems.find(
+        (item) => item.name === sock.name
+      );
+
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        this.cartItems.push({
+          name: sock.name,
+          price: sock.price,
+          quantity: 1,
+        });
+      }
+
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+    removeItem(index) {
+      this.cartItems.splice(index, 1);
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+  },
 };
 </script>
 
-<style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rampart+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
-
-h2 {
-  color: #87cefa;
-  /* font-family: "Cutive Mono", monospace; */
-  /* font-family: "Rampart One", cursive; */
-
-  font-family: "Rubik Vinyl", cursive;
-  letter-spacing: 4rem;
-  font-size: 38px;
-  text-align: center;
-  margin-top: 20px;
-}
-h2::first-letter {
-  color: #f6a8b6;
-}
-.testcolor {
-  background-color: black;
-}
-</style>
