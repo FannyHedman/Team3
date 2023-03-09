@@ -2,7 +2,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import TestCompVue from "@/components/TestComp.vue";
 
-
 const routes = [
   {
     path: "/",
