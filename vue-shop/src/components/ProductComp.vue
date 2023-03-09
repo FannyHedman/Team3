@@ -129,7 +129,6 @@ export default {
   data() {
     return {
       post: "5",
-      model: null,
       product: [],
       products: [],
       quantity: ["1", "2", "3", "4"],

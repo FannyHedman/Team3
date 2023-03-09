@@ -2,16 +2,13 @@
   <v-app class="wrapper-hero">
     <v-carousel
       cycle
-      height="550"
+      height="500"
+      class="pr-10 pl-10 pt-4"
       hide-delimiter-background
       :show-arrows="false"
     >
-      <v-carousel-item v-for="(slide, i) in slides" :key="i">
-        <v-img
-          class="hero-image mt-2"
-          :src="slide.heroImage"
-          alt="strumpor, kampanj"
-        />
+      <v-carousel-item v-for="(slide, i) in slides" :key="i" class="hero-image">
+        <v-img :src="slide.heroImage" alt="strumpor, kampanj" cover />
         <v-container class="hero-text-btn">
           <v-card class="socks-name">
             <v-card-text>
@@ -21,25 +18,12 @@
             </v-card-text>
           </v-card>
           <div class="btn">
-            <v-btn @click="onClick">{{ slide.btnAction }}</v-btn>
+            <v-btn >{{ slide.btnAction }}</v-btn>
           </div>
         </v-container>
       </v-carousel-item>
     </v-carousel>
   </v-app>
-  <!-- <v-container class="wrapper">
-    <v-col>
-      <v-col v-for="n in 4" :key="n" class="image-col" cols="2">
-        <v-img
-          :src="`https://picsum.photos/500/300?image=`"
-          :lazy-src="`https://picsum.photos/10/6?image=${n * 5 + 10}`"
-          aspect-ratio="1"
-          cover
-        >
-        </v-img>
-      </v-col>
-    </v-col>
-  </v-container> -->
 </template>
 
 <script>
@@ -72,6 +56,10 @@ export default {
 </script>
 
 <style scoped>
+/* .wrapper-hero
+{
+height:40%;} */
+
 .hero-text-btn {
   display: flex;
   flex-direction: column;
@@ -95,21 +83,14 @@ export default {
 .btn {
   position: relative;
   box-shadow: 5px 5px 5px;
-
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 1px;
 }
-
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-/* .image-col {
-  display: flex;
-  justify-content: end;
-  align-items: end;
+/* @media screen and (max-width: 375px){
+    .wrapper-hero
+{
+height:10%;}
 } */
 </style>

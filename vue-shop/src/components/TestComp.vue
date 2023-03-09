@@ -97,27 +97,28 @@
 </template>
 
 <script>
-import axios from "axios";
 export default {
-  name: "BannerPage",
   data() {
     return {
       name: "",
       size: "",
       info: "",
       price: "",
-      id: this.$route.params.id,
-      post: {},
+      id: "",
+      post: [],
       items: ["1", "2"],
       quantity: ["1", "2", "3"],
     };
   },
   mounted() {
     let self = this;
-    axios.get("Product.json/" + this.$route.params.id).then((result) => {
-      self.post = result.data;
-      console.log(self.post);
-    });
+    this.id = this.$route.query.id;
+    fetch(`product.json?id=${this.id}`)
+      .then((result) => result.json())
+      .then((data) => {
+        self.post = data;
+        console.log(self.post);
+      });
   },
 };
 </script>

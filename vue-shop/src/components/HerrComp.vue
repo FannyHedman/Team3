@@ -10,10 +10,10 @@
           sm="4"
           md="4"
           cols="4"
-          v-for="product in products"
+          v-for="product in products.filter(product => product.Gender === 'Herr')"
           :key="product.Gender"
         >
-          <div v-if="product.Gender === 'Herr'">
+          <div>
             <v-hover v-slot="{ isHovering, props }">
               <v-card
                 max-width="400"
@@ -75,9 +75,13 @@
 <script>
 import axios from "axios";
 
+import axios from "axios";
+
 export default {
   data() {
     return {
+      products: [],
+      favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
       products: [],
       favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
     };
@@ -86,6 +90,25 @@ export default {
     axios.get("/Product.json").then((response) => {
       this.products = response.data;
     });
+  mounted() {
+    axios.get("/Product.json").then((response) => {
+      this.products = response.data;
+    });
+  },
+  methods: {
+    addToFavorites(product) {
+      let index = this.favorites.findIndex((item) => item.id === product.id);
+      if (index === -1) {
+        this.favorites.push(product);
+      } else {
+        this.favorites.splice(index, 1);
+      }
+      localStorage.setItem("favorites", JSON.stringify(this.favorites));
+    },
+
+    isFavorite(product) {
+      return this.favorites.some((favorite) => favorite.id === product.id);
+    },
   },
   methods: {
     addToFavorites(product) {
