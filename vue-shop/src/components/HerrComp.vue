@@ -19,7 +19,7 @@
                 max-width="400"
                 width="auto"
                 height="auto"
-                class="pb-5"
+                class=""
                 v-bind="props"
               >
                 <v-img :src="product.LargeImage" width="auto" height="auto"
@@ -43,27 +43,26 @@
                       ></v-btn></div></v-expand-transition
                 ></v-img>
                 <v-row justify="start">
-                  <v-card-item class="mt-5 ml-3">
-                    <h3>{{ product.name }}</h3>
-                    <v-spacer></v-spacer>
-                    <p>{{ product.price }} SEK</p></v-card-item
+                  <router-link :to="`product/${product.id}`" class="r-link">
+                    <v-card-item class="mt-5 ml-3 mb-5">
+                      <h4>{{ product.name }}</h4>
+                      <v-spacer></v-spacer>
+                      <p>{{ product.price }} SEK</p></v-card-item
+                    ></router-link
                   ><v-spacer></v-spacer
                   ><v-card-actions>
                     <v-btn
-                      :to="{ name: 'Product' }"
-                      title="Till produkt"
-                      value="Info"
-                      exact
-                      class="mr-5 mt-5"
-                      >INFO
-                    </v-btn>
-                    <v-btn icon small @click="addToFavorites(product)">
+                      class="mr-5 mt-5 mb-5"
+                      icon
+                      small
+                      @click="addToFavorites(product)"
+                    >
                       <v-icon>{{
                         isFavorite(product) ? "mdi-heart" : "mdi-heart-outline"
                       }}</v-icon>
-                    </v-btn> 
-                   </v-card-actions
-                ></v-row>
+                    </v-btn></v-card-actions
+                  ></v-row
+                >
               </v-card>
             </v-hover>
           </div>
@@ -79,6 +78,7 @@ import axios from "axios";
 export default {
   data() {
     return {
+
       products: [],
       favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
     };
@@ -105,3 +105,10 @@ export default {
   },
 };
 </script>
+
+<style>
+.r-link {
+  text-decoration: none;
+  color: white;
+}
+</style>
