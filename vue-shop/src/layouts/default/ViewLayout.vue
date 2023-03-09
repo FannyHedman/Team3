@@ -26,7 +26,13 @@
       <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
-      <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
+      <v-btn
+        icon
+        :to="{ name: 'Varukorg' }"
+        title="Varukorg"
+        value="varukorg"
+        exact
+      >
         <v-icon>mdi-cart</v-icon>
       </v-btn>
     </v-app-bar>
@@ -84,7 +90,6 @@
             exact
           >
           </v-list-item>
-          
           <v-list-item
             :to="{ name: 'Varukorg' }"
             prepend-icon="mdi mdi-cart-outline"
@@ -120,7 +125,13 @@
         <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
-        <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
+        <v-btn
+          icon
+          :to="{ name: 'Varukorg' }"
+          title="Varukorg"
+          value="varukorg"
+          exact
+        >
           <v-icon>mdi-cart</v-icon>
         </v-btn>
       </v-app-bar>
