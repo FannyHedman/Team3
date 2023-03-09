@@ -90,8 +90,8 @@ export default {
         name: "",
         size: "",
 
-        type: Object,
-      },
+        type: Object
+      }
     };
   },
   created() {
@@ -107,11 +107,11 @@ export default {
         console.error(error);
         this.errorMessage = "Products failed to fetch, please try again!";
       }
-    },
+    }
   },
   delProd(id) {
-    this.products = this.products.filter((product) => product.id !== id);
-  },
+    this.products = this.products.filter(product => product.id !== id);
+  }
 };
 </script>
 
