@@ -1,7 +1,7 @@
 <template>
-  <ProductComp />
+  <TestComp />
 </template>
 
 <script setup>
-import ProductComp from "@/components/ProductComp.vue";
+import TestComp from "@/components/TestComp.vue";
 </script>

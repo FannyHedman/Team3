@@ -84,14 +84,7 @@
             exact
           >
           </v-list-item>
-          <v-list-item
-            :to="{ name: 'Product' }"
-            prepend-icon="mdi-account-box-outline"
-            title="Product"
-            value="product"
-            exact
-          >
-          </v-list-item>
+          
           <v-list-item
             :to="{ name: 'Varukorg' }"
             prepend-icon="mdi mdi-cart-outline"

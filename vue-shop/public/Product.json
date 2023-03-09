@@ -76,7 +76,7 @@
         "size": ["36-41", "42-47"],
         "Gender": "Dam",
         "SmallImage": "Team3-images/Small/Dam/cookie-monster-small.jpg",
-        "LargeImage": "Team3-images/Large/Dam/cookie-monster-large.jpg",
+        "LargeImage": "/Team3-images/Large/Dam/cookie-monster-large.jpg",
         "price": 149
     },
     {
