@@ -1,11 +1,17 @@
 <template>
-  <div class="banner-page">
+  <div class="banner">
     <div class="container">
       <div class="main-banner">
         <div class="img-container">
           <div>
-            <div>
-              <v-img width="auto" height="auto" alt="image of socks"> </v-img>
+            <div v-for="product in getData($route.params.id)" :key="product.id">
+              <v-img
+                width="auto"
+                height="auto"
+                :src="product.LargeImage"
+                alt="image of socks"
+              >
+              </v-img>
             </div>
           </div>
         </div>
@@ -15,13 +21,16 @@
               <v-card class="p-overlay">
                 <v-card-text class="text-h4">
                   <div>
-                    <div>
+                    <div
+                      v-for="product in getData($route.params.id)"
+                      :key="product.id"
+                    >
                       <div>
-                        {{ post.name }}
+                        {{ product.name }}
                         <div class="text-h6">
                           <div class="price-container">
-                            <div class="price">{{ post.price }} SEK</div>
-                            <div classs="rating">xxxxx (6)</div>
+                            <div class="price">{{ product.price }} SEK</div>
+                            <div classs="rating">★★★☆☆ (6)</div>
                             <!--Current price-->
                             <!--Rating-->
                           </div>
@@ -40,7 +49,10 @@
                       ></v-col>
                     </v-row>
                     <div>
-                      <div>
+                      <div
+                        v-for="product in getData($route.params.id)"
+                        :key="product.id"
+                      >
                         <v-row justify="center" class="ma-2">
                           <v-col sm="13"
                             ><v-select
@@ -64,9 +76,9 @@
                   <v-card class="p-underlay">
                     <v-card-text>
                       <div class="text-subtitle-1">
-                        Gratis leveranser till Sverige inom 1-3 arbetsdagar.
+                        Free deliveries to Sweden within 1-3 working days.
                         <br />
-                        * Gratis klimatkompenseade leveranser
+                        * Free climate-compensated deliveries
                       </div>
                     </v-card-text>
                   </v-card>
@@ -86,8 +98,16 @@
       <div class="product-description">
         <div class="pd">
           <!--Produkt beskriving -->
-          <h3 class="font-weight-bold">{{ this.id }}</h3>
-          <router-link to="/product">back to post</router-link>
+          <h3 class="font-weight-bold">Lorem ipsum</h3>
+          <div v-if="products !== null">
+            <div
+              class="p-info"
+              v-for="product in getData($route.params.id)"
+              :key="product.id"
+            >
+              {{ product.info }}
+            </div>
+          </div>
         </div>
         <!--Material ursprung-->
         <!--Frakt och retur-->
@@ -97,28 +117,22 @@
 </template>
 
 <script>
+import Product from "/src/Product.json";
 export default {
   data() {
     return {
-      name: "",
-      size: "",
-      info: "",
-      price: "",
-      id: "",
-      post: [],
-      items: ["1", "2"],
-      quantity: ["1", "2", "3"],
+      products: Product,
+      items: [],
+      quantity: ["1", "2"],
     };
   },
-  mounted() {
-    let self = this;
-    this.id = this.$route.query.id;
-    fetch(`product.json?id=${this.id}`)
-      .then((result) => result.json())
-      .then((data) => {
-        self.post = data;
-        console.log(self.post);
+  methods: {
+    getData(id) {
+      let data = this.products;
+      return data.filter((item) => {
+        return item.id == id;
       });
+    },
   },
 };
 </script>
@@ -191,12 +205,14 @@ span {
   padding-top: 5%;
   height: 100%;
   border-top: 1px grey solid;
-  margin-bottom: 10%;
   margin-top: 3%;
 }
 .p-underlay {
   background-color: white;
   color: black;
   margin-top: 50px;
+}
+.p-info {
+  padding-bottom: 10%;
 }
 </style>

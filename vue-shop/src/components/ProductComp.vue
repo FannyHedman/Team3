@@ -128,7 +128,7 @@
 export default {
   data() {
     return {
-      post: "5",
+      post: "10",
       product: [],
       products: [],
       quantity: ["1", "2", "3", "4"],
@@ -142,12 +142,12 @@ export default {
     //     this.fetchId();
     //   },
     //   { immediate: true }
-    // );
+    // ); -->
     this.fetchProducts();
     // this.id = this.$route.params.id;
     // fetch(`product.json?id=${this.id}`).then((res) => {
     //   this.post = res.data[this.id];
-    // });
+    // }); -->
   },
   methods: {
     // fetchId() {
@@ -155,15 +155,14 @@ export default {
     //     .then((res) => res.json())
     //     .then((result) => {
     //       this.product = result;
-    //     });
+    //     }); -->
 
     fetchProducts() {
-      //   this.id = this.$route.params.id;
-      fetch(`product.json`)
+      //   this.id = this.$route.params.id; -->
+      fetch(`Product.json`)
         .then((res) => res.json())
         .then((data) => {
           this.products = data;
-          this.items = data.size;
         });
     },
   },
