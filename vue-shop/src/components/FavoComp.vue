@@ -1,60 +1,59 @@
 <template>
-  <h1 class="d-flex justify-center mb-6 mt-6">Detta är dina valda favoriter</h1>
-  <v-row>
-    <v-col
-      v-for="(item, i) in items"
-      :key="i"
-      class="d-flex child-flex"
-      cols="4"
-    >
-      <v-img :src="item.src" aspect-ratio="1" cover class="bg-grey-lighten-2">
-        <template v-slot:placeholder>
-          <v-row class="fill-height ma-0" justify="center">
-            <v-progress-circular
-              indeterminate
-              color="grey-lighten-5"
-            ></v-progress-circular>
-          </v-row>
-        </template>
-      </v-img>
-    </v-col>
-  </v-row>
+  <v-container>
+    <h1>Favorites</h1>
+    <v-row>
+      <v-col
+        v-for="favorite in favorites"
+        :key="favorite.id"
+        cols="6"
+        sm="4"
+        md="3"
+      >
+        <v-card>
+          <v-img :src="favorite.SmallImage"></v-img>
+          <v-card-title>{{ favorite.name }}</v-card-title>
+          <v-card-actions>
+            <v-btn icon small @click="addToFavorites(favorite)">
+              <v-icon>{{
+                isFavorite(favorite) ? "mdi-heart" : "mdi-heart-outline"
+              }}</v-icon>
+            </v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   data() {
     return {
-      items: [
-        {
-          src: "public/Team3-images/Large/Herr/cola-men-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Herr/dots-men-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Herr/pink-men-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Herr/roses-men-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Herr/yellow-men-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Herr/yellowlogo-men-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Barn/animals-kids-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Barn/bananas-kids-large.jpg",
-        },
-        {
-          src: "public/Team3-images/Large/Barn/lips-kids-large.jpg",
-        },
-      ],
+      products: [],
+      favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
     };
+  },
+  mounted() {
+    axios.get("/Product.json").then((response) => {
+      this.products = response.data;
+    });
+  },
+  methods: {
+    addToFavorites(product) {
+      let index = this.favorites.findIndex((item) => item.id === product.id);
+      if (index === -1) {
+        this.favorites.push(product);
+      } else {
+        this.favorites.splice(index, 1);
+      }
+      localStorage.setItem("favorites", JSON.stringify(this.favorites));
+    },
+
+    isFavorite(product) {
+      return this.favorites.some((favorite) => favorite.id === product.id);
+    },
   },
 };
 </script>
