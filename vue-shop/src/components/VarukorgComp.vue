@@ -1,13 +1,13 @@
 <template>
-  <h2>VARUKORG</h2>
-  <v-card color="transparent" max-width="900" class="mx-auto">
-    <v-container>
-      <v-row flat class="mt-10 mb-5" no-gutters>
-        <v-col cols="12">
-          <div v-for="product in products" :key="product.id">
+  <v-container>
+    <h2 class="text-center ma-6 head-text">SHOPPING CART</h2>
+    <v-row>
+      <v-col class="" sm="8" md="5" offset-md="2" lg="12">
+        <div>
+          <v-row v-for="(item, index) in cartItems" :key="index">
             <v-card
-              class="my-1"
-              theme="light"
+              width="800"
+              class="mb=5 ma=4 align-center"
               style="
                 background-image: linear-gradient(
                   to right,
@@ -16,125 +16,148 @@
                 );
               "
             >
-              <div class="d-flex my-3 mx-3">
-                <div class="d-flex flex-wrap">
-                  <v-btn
-                    size="x-small"
-                    color="error"
-                    class="mx-1 elevation-5"
-                    variant="outlined"
-                    icon="mdi-heart"
-                  ></v-btn>
-                  <div class="d-flex flex-column justify-center">
-                    <v-card-title class="text-h4 mx-10">
-                      {{ product.name }}</v-card-title
-                    >
-
-                    <v-card-title class="text-h7 font-weight-medium mx-11">
-                      Storlek: {{ product.size }}</v-card-title
-                    >
-                    <v-card-title class="text-h7 font-weight-medium mx-11">
-                      Pris: {{ product.price }}kr</v-card-title
-                    >
-                  </div>
-                  <v-card-actions>
-                    <v-btn
-                      @click.stop="delProd(product.id)"
-                      class="ms-2 mx-12 elevation-2"
-                      color="white"
-                      size="small"
-                    >
-                      <v-icon>mdi mdi-delete-circle</v-icon>
-                      Ta Bort vara
-                    </v-btn>
-                  </v-card-actions>
+              <div class="d-flex">
+                <div>
+                  <v-avatar class="mt-6 ml-5" size="175" rounded="0">
+                    <v-img
+                      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
+                    ></v-img>
+                  </v-avatar>
                 </div>
-
-                <v-avatar class="mt-1 ml-16" size="275" rounded="0">
-                  <v-img
-                    :src="product.LargeImage"
-                    width="400"
-                    height="400"
-                  ></v-img>
-                </v-avatar>
+                <div class="d-flex flex-column justify-center">
+                  <v-card-title class="pt-0 product-text">
+                    {{ item.name }} {{ item.quantity }} st
+                  </v-card-title>
+                  <v-card-title class="pt-0 subtitle-text">
+                    {{ item.price }} SEK
+                  </v-card-title>
+                  <v-btn
+                    width="80px"
+                    class="ma-5 d-flex"
+                    color="black"
+                    large
+                    @click="removeItem(index)"
+                    >Remove</v-btn
+                  >
+                </div>
               </div>
             </v-card>
-          </div>
-        </v-col>
-      </v-row>
-    </v-container>
-  </v-card>
-  <div class="d-flex justify-center mb-5">
-    <v-card-actions>
-      <v-btn to="/" color="#F3EDB0" variant="outlined">
-        <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
-        Tillbaka</v-btn
-      >
-    </v-card-actions>
-    <v-card-actions>
-      <v-btn color="#87cefa" variant="outlined">
-        <v-icon class="mx-2" small right>mdi-cart-outline</v-icon>
-        Till Kassa</v-btn
-      >
-    </v-card-actions>
-  </div>
+          </v-row>
+        </div>
+      </v-col>
+    </v-row>
+    <h3 class="d-flex justify-center mt-4 amount-text">
+      Total amount: {{ totalAmount }} SEK
+    </h3>
+    <div class="d-flex justify-space-between">
+      <v-card-actions>
+        <v-btn to="/" color="#F3EDB0" variant="outlined">
+          <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
+          Go Back
+        </v-btn>
+      </v-card-actions>
+      <v-card-actions>
+        <v-btn color="#F3EDB0" variant="outlined">
+          <v-icon class="mx-2" small right>mdi-cart-outline</v-icon>
+          CHECKOUT</v-btn
+        >
+      </v-card-actions>
+    </div>
+  </v-container>
 </template>
-
 <script>
+import axios from "axios";
 export default {
   data() {
-    return {
-      products: {
-        required: true,
-        price: "",
-        name: "",
-        size: "",
-
-        type: Object
-      }
-    };
+    return { name: "", price: "", products: [], cartItems: [] };
   },
   created() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const res = await fetch("Product.json");
-        const result = await res.json();
-        this.products = result;
-      } catch (error) {
-        console.error(error);
-        this.errorMessage = "Products failed to fetch, please try again!";
-      }
+    axios
+      .get("/Product.json")
+      .then(response => {
+        this.products = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    if (localStorage.getItem("cartItems")) {
+      this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
     }
   },
-  delProd(id) {
-    this.products = this.products.filter(product => product.id !== id);
+  computed: {
+    totalAmount() {
+      return this.cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    }
+  },
+  methods: {
+    addToCart(product) {
+      const existingItem = this.cartItems.find(
+        item => item.name === product.name
+      );
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        this.cartItems.push({
+          name: product.name,
+          price: product.price,
+          quantity: 1
+        });
+      }
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+    removeItem(index) {
+      this.cartItems.splice(index, 1);
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    }
   }
 };
 </script>
-
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rampart+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
-
-h2 {
-  color: #87cefa;
-  /* font-family: "Cutive Mono", monospace; */
-  /* font-family: "Rampart One", cursive; */
-
-  font-family: "Rubik Vinyl", cursive;
-  letter-spacing: 4rem;
-  font-size: 38px;
-  text-align: center;
-  margin-top: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Barrio&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gruppo&display=swap");
+.head-text {
+  font-family: "Barrio", cursive;
+  letter-spacing: 2rem;
+  background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+  font-size: 2em;
+  background-size: 9%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
-h2::first-letter {
-  color: #f6a8b6;
+.product-text {
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  font-family: "Gruppo", cursive;
 }
-.testcolor {
-  background-color: black;
+
+.subtitle-text {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  letter-spacing: 0.3rem;
+  font-family: "Gruppo", cursive;
+}
+.amount-text {
+  font-size: 22px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-family: "Gruppo", cursive;
+  font-size: 1.8em;
+  background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+  background-size: 100%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
 </style>
