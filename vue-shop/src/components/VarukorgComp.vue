@@ -2,11 +2,11 @@
   <v-container>
     <h2 class="text-center ma-6 head-text">SHOPPING CART</h2>
     <v-row>
-      <v-col class="" sm="8" md="5" offset-md="2" lg="12">
+      <v-col class="" sm="4" md="5" offset-md="2" lg="12">
         <div>
           <v-row v-for="(item, index) in cartItems" :key="index">
             <v-card
-              width="800"
+              width="760"
               class="mb=5 ma=4 align-center"
               style="
                 background-image: linear-gradient(
@@ -24,21 +24,25 @@
                     ></v-img>
                   </v-avatar>
                 </div>
-                <div class="d-flex flex-column justify-center">
-                  <v-card-title class="pt-0 product-text">
-                    {{ item.name }} {{ item.quantity }} st
+                <div class="d-flex ml-15 flex-column justify-center">
+                  <v-card-title class="pt-3 product-text">
+                    {{ item.name }}
+                  </v-card-title>
+                  <v-card-title class="pt-0 size-text">
+                    size: {{ item.size }}
                   </v-card-title>
                   <v-card-title class="pt-0 subtitle-text">
-                    {{ item.price }} SEK
+                    {{ item.quantity }} x {{ item.price }}
+                    SEK
                   </v-card-title>
                   <v-btn
-                    width="80px"
-                    class="ma-5 d-flex"
+                    width="110px"
+                    class="ma-5"
                     color="black"
                     large
                     @click="removeItem(index)"
-                    >Remove</v-btn
-                  >
+                    >Remove <v-icon end icon="mdi mdi-delete"></v-icon
+                  ></v-btn>
                 </div>
               </div>
             </v-card>
@@ -64,35 +68,12 @@
       </v-card-actions>
     </div>
   </v-container>
-  <v-app>
-    <v-container>
-      <h2>Shopping cart</h2>
-      <v-list>
-        <v-list-item v-for="(item, index) in cartItems" :key="index">
-          <v-list-item-title
-            >{{ item.name }} ({{ item.quantity }})</v-list-item-title
-          >
-          <v-list-item-subtitle>{{ item.price }} SEK</v-list-item-subtitle>
-          <v-btn color="red" small @click="removeItem(index)">Remove</v-btn>
-        </v-list-item>
-      </v-list>
-      <h3>Total amount: {{ totalAmount }} SEK</h3>
-    </v-container>
-  </v-app>
 </template>
 <script>
 import axios from "axios";
-import axios from "axios";
-
 export default {
   data() {
     return { name: "", price: "", products: [], cartItems: [] };
-    return {
-      name: "",
-      price: "",
-      socks: [],
-      cartItems: [],
-    };
   },
   created() {
     axios
@@ -113,24 +94,6 @@ export default {
         return total + item.price * item.quantity;
       }, 0);
     }
-    axios
-      .get("/Product.json")
-      .then((response) => {
-        this.products = response.data;
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-    if (localStorage.getItem("cartItems")) {
-      this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
-    }
-  },
-  computed: {
-    totalAmount() {
-      return this.cartItems.reduce((total, item) => {
-        return total + item.price * item.quantity;
-      }, 0);
-    },
   },
   methods: {
     addToCart(product) {
@@ -144,19 +107,6 @@ export default {
           name: product.name,
           price: product.price,
           quantity: 1
-        });
-    addToCart(sock) {
-      const existingItem = this.cartItems.find(
-        (item) => item.name === sock.name
-      );
-
-      if (existingItem) {
-        existingItem.quantity++;
-      } else {
-        this.cartItems.push({
-          name: sock.name,
-          price: sock.price,
-          quantity: 1,
         });
       }
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
@@ -175,7 +125,7 @@ export default {
   font-family: "Barrio", cursive;
   letter-spacing: 2rem;
   background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
-  font-size: 2em;
+  font-size: 3em;
   background-size: 9%;
   background-repeat: repeat;
   background-clip: text;
@@ -185,15 +135,22 @@ export default {
   -moz-text-fill-color: transparent;
 }
 .product-text {
-  font-size: 25px;
+  font-size: 35px;
   color: rgb(0, 0, 0);
   font-weight: bolder;
   font-family: "Gruppo", cursive;
 }
 
+.size-text {
+  font-size: 25px;
+  color: rgb(87, 16, 87);
+  font-weight: 600;
+  font-family: "Gruppo", cursive;
+}
+
 .subtitle-text {
   font-size: 20px;
-  color: rgb(255, 255, 255);
+  color: rgb(56, 5, 41);
   font-weight: bolder;
   letter-spacing: 0.3rem;
   font-family: "Gruppo", cursive;
