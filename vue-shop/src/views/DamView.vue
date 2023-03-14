@@ -3,5 +3,5 @@
 </template>
 
 <script setup>
-  import DamComp from '@/components/DamComp.vue'
+import DamComp from "@/components/DamComp.vue";
 </script>
