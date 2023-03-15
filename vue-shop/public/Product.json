@@ -178,5 +178,26 @@
         "SmallImage": "Team3-images/Small/Barn/pink-kids-small.jpg",
         "LargeImage": "Team3-images/Large/Barn/pink-kids-large.jpg",
         "price": 79
+    },
+    {
+        "id": "19",
+        "name": "HappyPink",
+        "btnAction": "Like",
+        "heroImage": "Team3-images/HeroImage/HeroPink.jpg",
+        "price": 79
+    },
+    {
+        "id": "20",
+        "name": "HappyBanana",
+        "btnAction": "Like",
+        "heroImage": "Team3-images/HeroImage/HeroBanana.jpg",
+        "price": 79
+    },
+    {
+        "id": "21",
+        "name": "HappyPrick",
+        "btnAction": "Like",
+        "heroImage": "Team3-images/HeroImage/HeroPrick.jpg",
+        "price": 79
     }
 ]

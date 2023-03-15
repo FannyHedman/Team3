@@ -1,35 +1,12 @@
+<script setup>
+import NavBar from "@/components/NavBar.vue";
+</script>
+
 <template>
   <v-responsive class="d-flex align-center">
     <!-- Detta är navbaren som är synlig för desktop -->
-    <v-app-bar class="hidden-sm-and-down">
-      <v-toolbar-title>Vue Shop</v-toolbar-title>
-      <v-row no-gutters>
-        <v-btn
-          :href="`${link.route}`"
-          v-for="link in links"
-          :key="link"
-          variant="text"
-          class="mx-2"
-          rounded="xl"
-        >
-          {{ link.name }}
-        </v-btn>
-      </v-row>
-      <v-text-field
-        @focus="searchClosed = false"
-        @blur="searchClosed = true"
-        placeholder="Sök"
-        variant="plain"
-        prepend-inner-icon="mdi-magnify mt-auto w-25"
-        :class="{ closed: searchClosed }"
-      ></v-text-field>
-      <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-      <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
-        <v-icon>mdi-cart</v-icon>
-      </v-btn>
-    </v-app-bar>
+
+    <nav-bar @search-value="getData" />
     <!-- navbaren som är synlig för desktop tar slut här -->
 
     <!-- Detta är det som finns innuti menyn som kommer ut från vänster  -->
@@ -68,22 +45,7 @@
             exact
           >
           </v-list-item>
-          <v-list-item
-            :to="{ name: 'About' }"
-            prepend-icon="mdi-book-information-variant"
-            title="About"
-            value="about"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
-            :to="{ name: 'Kontakt' }"
-            prepend-icon="mdi-account-box-outline"
-            title="Kontakt"
-            value="kontakt"
-            exact
-          >
-          </v-list-item>
+
           <v-list-item
             :to="{ name: 'Product' }"
             prepend-icon="mdi-account-box-outline"
@@ -114,10 +76,12 @@
       <v-app-bar class="hidden-md-and-up">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Vue Shop</v-toolbar-title>
-
+        <!-- SÖKFÄLT -->
         <v-text-field
           @focus="searchClosed = false"
           @blur="searchClosed = true"
+          v-model="searchTerm"
+          @input="getData()"
           placeholder="Sök"
           variant="plain"
           prepend-inner-icon="mdi-magnify mt-auto w-25"
@@ -127,7 +91,13 @@
         <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
-        <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
+        <v-btn
+          icon
+          :to="{ name: 'Varukorg' }"
+          title="Varukorg"
+          value="varukorg"
+          exact
+        >
           <v-icon>mdi-cart</v-icon>
         </v-btn>
       </v-app-bar>
@@ -135,7 +105,8 @@
 
       <!-- Här är all content som renderas på sidan mellan menyn och footern dvs BODY -->
       <v-main>
-        <router-view />
+        <!-- Search färdas till alla routes -->
+        <router-view :search-term="searchTerm" />
       </v-main>
       <!-- ----------------- RÖR EJ OVAN SEKTION ---------------------------- -->
 
@@ -164,17 +135,21 @@
 <script>
 export default {
   data: () => ({
+    searchTerm: "",
     searchClosed: true,
     drawer: false,
     links: [
       { name: "hem", route: "/" },
       { name: "dam", route: "/dam" },
       { name: "herr", route: "/herr" },
-      { name: "barn", route: "/barn" },
-      { name: "about", route: "/about" },
-      { name: "kontakt", route: "/kontakt" },
-    ],
+      { name: "barn", route: "/barn" }
+    ]
   }),
+  methods: {
+    getData(searchTerm) {
+      this.searchTerm = searchTerm;
+    }
+  }
 };
 </script>
 

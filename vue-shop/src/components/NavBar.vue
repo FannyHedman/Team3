@@ -1,44 +1,58 @@
 <template>
-  <v-card>
-    <h1>Hej Richard</h1>
-    <v-app-bar color="red" prominent>
-      <v-app-bar-nav-icon
+  <v-app-bar class="hidden-sm-and-down">
+    <v-toolbar-title>Vue Shop</v-toolbar-title>
+    <v-row no-gutters>
+      <v-btn
+        :href="`${link.route}`"
+        v-for="link in links"
+        :key="link"
         variant="text"
-        @click.stop="drawer = !drawer"
-      ></v-app-bar-nav-icon
-      ><v-toolbar-title>My files</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn variant="text" icon="mdi-magnify"></v-btn>
-      <v-btn variant="text" icon=""></v-btn>
-      <v-btn variant="text" icon="mdi-dots-vertical"></v-btn
-    ></v-app-bar>
-    <v-navigation-drawer
-      class="dropdown"
-      v-model="drawer"
-      location="left"
-      temporary
-      ><v-list :items="items"></v-list
-    ></v-navigation-drawer>
-    <v-main style="height: 10px"> <v-card-text> Hejdär </v-card-text> </v-main>
-  </v-card>
+        class="mx-2"
+        rounded="xl"
+      >
+        {{ link.name }}
+      </v-btn>
+    </v-row>
+    <v-text-field
+      @focus="searchClosed = false"
+      @blur="searchClosed = true"
+      v-model="searchTerm"
+      @input="getData()"
+      placeholder="Sök"
+      variant="plain"
+      prepend-inner-icon="mdi-magnify mt-auto w-25"
+      :class="{ closed: searchClosed }"
+    ></v-text-field>
+    <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
+      <v-icon>mdi-heart</v-icon>
+    </v-btn>
+    <v-btn
+      icon
+      :to="{ name: 'Varukorg' }"
+      title="Varukorg"
+      value="varukorg"
+      exact
+    >
+      <v-icon>mdi-cart</v-icon>
+    </v-btn>
+  </v-app-bar>
 </template>
 <script>
 export default {
   data: () => ({
     drawer: false,
-    group: null,
-    items: [
-      { title: "Foo", value: "foo" },
-      { title: "Bar", value: "bar" },
-      { title: "Fizz", value: "fizz" },
-      { title: "Buzz", value: "buzz" },
-    ],
+    links: [
+      { name: "hem", route: "/" },
+      { name: "dam", route: "/dam" },
+      { name: "herr", route: "/herr" },
+      { name: "barn", route: "/barn" }
+    ]
   }),
-  watch: {
-    group() {
-      this.drawer = false;
-    },
-  },
+  methods: {
+    getData() {
+      this.$emit("search-value", this.searchTerm);
+    }
+  }
 };
 </script>
 <script setup></script>
