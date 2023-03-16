@@ -37,7 +37,7 @@
       <v-row class="d-flex justify-center">
         <v-col>
           <div class="d-flex justify-center mt-1">
-            <v-card class="" width="360px">
+            <v-card width="360px">
               <v-card-title class="text-center payment-text">
                 Shipping
               </v-card-title>
@@ -96,7 +96,7 @@
         </v-col>
         <v-col>
           <div class="d-flex justify-center">
-            <v-card class="" width="360px" outlined>
+            <v-card width="360px" outlined>
               <v-card-title class="text-center payment-text">
                 Delivery Options
               </v-card-title>
@@ -148,7 +148,7 @@
           <v-text-field label="* Discount Code" />
         </v-card-text>
         <div class="d-flex">
-          <v-checkbox v-model="checkbox">
+          <v-checkbox>
             <template v-slot:label>
               <div>
                 agree to our
@@ -180,16 +180,16 @@
       </h3>
       <div class="d-flex justify-space-between">
         <v-card-actions>
-          <v-btn to="/" color="pink-darken-3" variant="outlined">
+          <v-btn to="/" color="purple-darken-2" variant="outlined">
             <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
             Take me home
           </v-btn>
         </v-card-actions>
         <v-col cols="auto">
-          <v-dialog transition="" width="auto">
+          <v-dialog width="auto">
             <template v-slot:activator="{ props }">
               <v-card-actions>
-                <v-btn color="pink-darken-3" variant="outlined" v-bind="props"
+                <v-btn color="purple-darken-2" variant="outlined" v-bind="props"
                   ><v-icon class="mx-2" small>mdi mdi-cart-outline</v-icon> Take
                   my money</v-btn
                 >
@@ -319,6 +319,6 @@ export default {
   font-family: "Gruppo", cursive;
 }
 span {
-  color: rgb(2, 255, 255);
+  color: #ae03b1;
 }
 </style>
