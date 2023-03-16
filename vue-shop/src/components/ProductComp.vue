@@ -76,8 +76,8 @@
         <v-card-text>{{ product.info }}</v-card-text>
       </v-col>
     </v-row>
-  </v-container>
-</template>
+  </v-container></template
+>
 <script>
 import axios from "axios";
 export default {
@@ -94,12 +94,12 @@ export default {
     fetchData() {
       axios
         .get("/Product.json")
-        .then((response) => {
+        .then(response => {
           this.products = response.data;
           const selectedProduct = this.getData(this.$route.params.id)[0];
           this.sizes = selectedProduct.size;
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
       if (localStorage.getItem("cartItems")) {
@@ -108,12 +108,12 @@ export default {
     },
     getData(id) {
       let data = this.products;
-      return data.filter((item) => {
+      return data.filter(item => {
         return item.id == id;
       });
     },
     addToFavorites(product) {
-      let index = this.favorites.findIndex((item) => item.id === product.id);
+      let index = this.favorites.findIndex(item => item.id === product.id);
       if (index === -1) {
         this.favorites.push(product);
       } else {
@@ -122,47 +122,11 @@ export default {
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
     isFavorite(product) {
-      return this.favorites.some((favorite) => favorite.id === product.id);
-    },
-    getData(id) {
-      let data = this.products;
-      return data.filter((item) => {
-        return item.id == id;
-      });
-    },
-    addToFavorites(product) {
-      let index = this.favorites.findIndex((item) => item.id === product.id);
-      if (index === -1) {
-        this.favorites.push(product);
-      } else {
-        this.favorites.splice(index, 1);
-      }
-      localStorage.setItem("favorites", JSON.stringify(this.favorites));
-    },
-    isFavorite(product) {
-      return this.favorites.some((favorite) => favorite.id === product.id);
-    },
-    addToCart(product, quantity) {
-      let cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-      let index = cartItems.findIndex((item) => item.name === product.name);
-      if (index === -1) {
-        cartItems.push({
-          name: product.name,
-          price: product.price,
-          quantity: quantity,
-        });
-      } else {
-        cartItems[index].quantity += quantity;
-      }
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      this.quantity = 0;
+      return this.favorites.some(favorite => favorite.id === product.id);
     },
   },
   created() {
     this.fetchData();
-  },
-  created() {
-    this.fetchData();
-  },
+  }
 };
 </script>
