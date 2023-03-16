@@ -1,6 +1,5 @@
 <template>
   <v-card>
-    <h1>Hej Richard</h1>
     <v-app-bar color="red" prominent>
       <v-app-bar-nav-icon
         variant="text"
@@ -31,14 +30,14 @@ export default {
       { title: "Foo", value: "foo" },
       { title: "Bar", value: "bar" },
       { title: "Fizz", value: "fizz" },
-      { title: "Buzz", value: "buzz" },
-    ],
+      { title: "Buzz", value: "buzz" }
+    ]
   }),
   watch: {
     group() {
       this.drawer = false;
-    },
-  },
+    }
+  }
 };
 </script>
 <script setup></script>

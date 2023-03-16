@@ -1,79 +1,217 @@
 <template>
-  <v-container>
-    <h2 class="text-center ma-6 head-text">SHOPPING CART</h2>
-    <v-row>
-      <v-col class="" sm="4" md="5" offset-md="2" lg="12">
-        <div>
-          <v-row v-for="(item, index) in cartItems" :key="index">
-            <v-card
-              width="760"
-              class="mb=5 ma=4 align-center"
-              style="
+  <v-app>
+    <v-container>
+      <h2 class="text-center ma-6 head-text">SHOPPING CART</h2>
+      <v-row>
+        <v-col v-for="(item, index) in cartItems" :key="index" cols="6" md="3">
+          <v-card
+            style="
                 background-image: linear-gradient(
-                  to right,
-                  #fa709a 0%,
-                  #fee140 100%
+
+                  #000000 0%,
+                  #000000 30%,
+                #e351fc 100%
                 );
               "
-            >
-              <div class="d-flex">
-                <div>
-                  <v-avatar class="mt-6 ml-5" size="175" rounded="0">
-                    <v-img
-                      src="https://cdn.vuetifyjs.com/images/parallax/material.jpg"
-                    ></v-img>
-                  </v-avatar>
-                </div>
-                <div class="d-flex ml-15 flex-column justify-center">
-                  <v-card-title class="pt-3 product-text">
-                    {{ item.name }}
-                  </v-card-title>
-                  <v-card-title class="pt-0 size-text">
-                    size: {{ item.size }}
-                  </v-card-title>
-                  <v-card-title class="pt-0 subtitle-text">
-                    {{ item.quantity }} x {{ item.price }}
-                    SEK
-                  </v-card-title>
-                  <v-btn
-                    width="110px"
-                    class="ma-5"
-                    color="black"
-                    large
-                    @click="removeItem(index)"
-                    >Remove <v-icon end icon="mdi mdi-delete"></v-icon
-                  ></v-btn>
-                </div>
-              </div>
+            class="pa-2"
+          >
+            <v-img src="Team3-images/CartImage/happy.png"></v-img>
+
+            <v-card-title class="product-text">{{ item.name }}</v-card-title>
+            <v-card-text class="size-text mt-4">
+              <div class="mb-3">Antal: {{ item.quantity }}st</div>
+              <div class="mb-3">Size: {{ item.size }}</div>
+              <div>Price: {{ item.price }} Kr</div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                elevation="24"
+                class="ma-2"
+                color="purple-darken-4"
+                @click="removeItem(index)"
+                >Remove <v-icon end icon="mdi mdi-delete"></v-icon
+              ></v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row class="d-flex justify-center">
+        <v-col>
+          <div class="d-flex justify-center mt-1">
+            <v-card class="" width="360px">
+              <v-card-title class="text-center payment-text">
+                Shipping
+              </v-card-title>
+              <v-card-text>
+                <v-text-field label="Name" />
+                <v-text-field label="Street" />
+                <v-text-field label="Zip" />
+                <v-text-field label="City" />
+                <v-text-field label="Phone" />
+                <v-text-field label="Email" />
+              </v-card-text>
             </v-card>
-          </v-row>
+          </div>
+        </v-col>
+
+        <v-col>
+          <div class="d-flex justify-center">
+            <v-card width="360px" outlined>
+              <v-card-title class="text-center payment-text">
+                Payment
+              </v-card-title>
+
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="pink-lighten-3" label="Klarna"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/klarna.png"
+                ></v-avatar>
+              </v-card-text>
+
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="orange" label="Visa"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/VisaL.png"
+                ></v-avatar>
+              </v-card-text>
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox label="Swish"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/swish.jpg"
+                ></v-avatar>
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-col>
+        <v-col>
+          <div class="d-flex justify-center">
+            <v-card class="" width="360px" outlined>
+              <v-card-title class="text-center payment-text">
+                Delivery Options
+              </v-card-title>
+
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="teal-accent-3" label="Budbee"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/Bud.png"
+                ></v-avatar>
+              </v-card-text>
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox
+                  color="cyan-accent-4"
+                  label="Post Nord"
+                ></v-checkbox>
+
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/post.png"
+                ></v-avatar>
+              </v-card-text>
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="yellow-accent-4" label="DHL"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/dhl.png"
+                ></v-avatar>
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-col>
+      </v-row>
+
+      <div>
+        <v-card-text class="d-flex">
+          <v-text-field label="* GiftCard" />
+          <v-spacer />
+          <v-text-field label="* Discount Code" />
+        </v-card-text>
+        <div class="d-flex">
+          <v-checkbox v-model="checkbox">
+            <template v-slot:label>
+              <div>
+                agree to our
+                <v-tooltip location="top">
+                  <template v-slot:activator="{ props }">
+                    <a
+                      target="_blank"
+                      href="https://iths.se"
+                      v-bind="props"
+                      @click.stop
+                    >
+                      terms
+                    </a>
+                  </template>
+                  Opens in new window
+                </v-tooltip>
+              </div>
+            </template>
+          </v-checkbox>
+          <v-spacer />
+          <v-checkbox
+            class="justify-end d-flex"
+            label="Subscribe for news"
+          ></v-checkbox>
         </div>
-      </v-col>
-    </v-row>
-    <h3 class="d-flex justify-center mt-4 amount-text">
-      Total amount: {{ totalAmount }} SEK
-    </h3>
-    <div class="d-flex justify-space-between">
-      <v-card-actions>
-        <v-btn to="/" color="#F3EDB0" variant="outlined">
-          <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
-          Go Back
-        </v-btn>
-      </v-card-actions>
-      <v-card-actions>
-        <v-btn color="#F3EDB0" variant="outlined">
-          <v-icon class="mx-2" small right>mdi-cart-outline</v-icon>
-          CHECKOUT</v-btn
-        >
-      </v-card-actions>
-    </div>
-  </v-container>
-</template>
+      </div>
+      <h3 class="d-flex justify-center mt-4 amount-text">
+        Total amount: {{ totalAmount }} SEK
+      </h3>
+      <div class="d-flex justify-space-between">
+        <v-card-actions>
+          <v-btn to="/" color="#F3EDB0" variant="outlined">
+            <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
+            Take me home
+          </v-btn>
+        </v-card-actions>
+        <v-col cols="auto">
+          <v-dialog transition="" width="auto">
+            <template v-slot:activator="{ props }">
+              <v-card-actions>
+                <v-btn color="#F3EDB0" variant="outlined" v-bind="props"
+                  ><v-icon class="mx-2" small>mdi mdi-cart-outline</v-icon> Take
+                  my money</v-btn
+                >
+              </v-card-actions>
+            </template>
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-toolbar
+                  class="text-center"
+                  color="purple-darken-1"
+                  title="HELLO BUDDY!!"
+                ></v-toolbar>
+                <v-card-text>
+                  <div class="text-h2 pa-12 text-center">
+                    Thank you for your purchase
+                  </div>
+                  <div class="text-h6 pa-12 text-center">
+                    We will thank you with a 15% discount code for your next
+                    purchase!
+                    <p>Use <span>PARTYFEET15</span> for 15% discount</p>
+                  </div>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn to="/" variant="text" @click="isActive.value = false"
+                    >To homepage</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </v-col>
+      </div>
+    </v-container>
+  </v-app></template
+>
 <script>
 import axios from "axios";
 export default {
   data() {
-    return { name: "", price: "", products: [], cartItems: [] };
+    return { name: "", price: "", socks: [], cartItems: [], checkbox: false };
   },
   created() {
     axios
@@ -96,16 +234,14 @@ export default {
     }
   },
   methods: {
-    addToCart(product) {
-      const existingItem = this.cartItems.find(
-        item => item.name === product.name
-      );
+    addToCart(sock) {
+      const existingItem = this.cartItems.find(item => item.name === sock.name);
       if (existingItem) {
         existingItem.quantity++;
       } else {
         this.cartItems.push({
-          name: product.name,
-          price: product.price,
+          name: sock.name,
+          price: sock.price,
           quantity: 1
         });
       }
@@ -118,6 +254,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=Barrio&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Gruppo&display=swap");
@@ -135,26 +272,19 @@ export default {
   -moz-text-fill-color: transparent;
 }
 .product-text {
-  font-size: 35px;
-  color: rgb(0, 0, 0);
+  font-size: 22px;
+  color: rgb(255, 255, 255);
   font-weight: bolder;
   font-family: "Gruppo", cursive;
 }
 
 .size-text {
-  font-size: 25px;
-  color: rgb(87, 16, 87);
+  font-size: 22px;
+  color: rgb(0, 0, 0);
   font-weight: 600;
   font-family: "Gruppo", cursive;
 }
 
-.subtitle-text {
-  font-size: 20px;
-  color: rgb(56, 5, 41);
-  font-weight: bolder;
-  letter-spacing: 0.3rem;
-  font-family: "Gruppo", cursive;
-}
 .amount-text {
   font-size: 22px;
   color: white;
@@ -170,5 +300,15 @@ export default {
   -webkit-text-fill-color: transparent;
   -moz-background-clip: text;
   -moz-text-fill-color: transparent;
+}
+
+.payment-text {
+  font-size: 35px;
+  color: rgb(252, 255, 177);
+  font-weight: bolder;
+  font-family: "Gruppo", cursive;
+}
+span {
+  color: rgb(2, 255, 255);
 }
 </style>
