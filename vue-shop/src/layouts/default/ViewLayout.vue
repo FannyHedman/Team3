@@ -1,12 +1,44 @@
-<script setup>
-import NavBar from "@/components/NavBar.vue";
-</script>
-
 <template>
   <v-responsive class="d-flex align-center">
     <!-- Detta är navbaren som är synlig för desktop -->
-
-    <nav-bar @search-value="getData" />
+    <v-app-bar class="hidden-sm-and-down">
+      <v-toolbar-title>Vue Shop</v-toolbar-title>
+      <v-btn @click="toggleTheme" icon size="small">
+        <v-icon>mdi-theme-light-dark</v-icon>
+      </v-btn>
+      <v-row no-gutters>
+        <v-btn
+          :href="`${link.route}`"
+          v-for="link in links"
+          :key="link"
+          variant="text"
+          class="mx-2"
+          rounded="xl"
+        >
+          {{ link.name }}
+        </v-btn>
+      </v-row>
+      <v-text-field
+        @focus="searchClosed = false"
+        @blur="searchClosed = true"
+        placeholder="Sök"
+        variant="plain"
+        prepend-inner-icon="mdi-magnify mt-auto w-25"
+        :class="{ closed: searchClosed }"
+      ></v-text-field>
+      <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
+        <v-icon>mdi-heart</v-icon>
+      </v-btn>
+      <v-btn
+        icon
+        :to="{ name: 'Varukorg' }"
+        title="Varukorg"
+        value="varukorg"
+        exact
+      >
+        <v-icon>mdi-cart</v-icon>
+      </v-btn>
+    </v-app-bar>
     <!-- navbaren som är synlig för desktop tar slut här -->
     <!-- Detta är det som finns innuti menyn som kommer ut från vänster  -->
     <v-app id="inspire">
@@ -46,14 +78,6 @@ import NavBar from "@/components/NavBar.vue";
           </v-list-item>
 
           <v-list-item
-            :to="{ name: 'Product' }"
-            prepend-icon="mdi-account-box-outline"
-            title="Product"
-            value="product"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
             :to="{ name: 'Varukorg' }"
             prepend-icon="mdi mdi-cart-outline"
             title="Varukorg"
@@ -77,12 +101,9 @@ import NavBar from "@/components/NavBar.vue";
       <v-app-bar class="hidden-md-and-up">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Vue Shop</v-toolbar-title>
-        <!-- SÖKFÄLT -->
         <v-text-field
           @focus="searchClosed = false"
           @blur="searchClosed = true"
-          v-model="searchTerm"
-          @input="getData()"
           placeholder="Sök"
           variant="plain"
           prepend-inner-icon="mdi-magnify mt-auto w-25"
@@ -104,8 +125,7 @@ import NavBar from "@/components/NavBar.vue";
       <!-- hamburgarmenyn som syns när det är små skärmar tar sut här -->
       <!-- Här är all content som renderas på sidan mellan menyn och footern dvs BODY -->
       <v-main>
-        <!-- Search ska färdas till alla routes -->
-        <router-view :search-term="searchTerm" />
+        <router-view />
       </v-main>
       <!-- ----------------- RÖR EJ OVAN SEKTION ---------------------------- -->
       <v-footer>
@@ -134,7 +154,6 @@ import { useTheme } from "vuetify";
 
 export default {
   data: () => ({
-    searchTerm: "",
     searchClosed: true,
     drawer: false,
     links: [
@@ -144,10 +163,15 @@ export default {
       { name: "barn", route: "/barn" }
     ]
   }),
-  methods: {
-    getData(searchTerm) {
-      this.searchTerm = searchTerm;
-    }
+  setup() {
+    const theme = useTheme();
+    return {
+      theme,
+      toggleTheme: () =>
+        (theme.global.name.value = theme.global.current.value.dark
+          ? "light"
+          : "dark")
+    };
   }
 };
 </script>

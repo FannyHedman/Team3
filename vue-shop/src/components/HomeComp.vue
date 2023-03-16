@@ -88,11 +88,11 @@
     </v-sheet>
   </v-app>
 </template>
+
 <script>
 import axios from "axios";
 
 export default {
-  props: { searchValue: "" },
   data() {
     return {
       slides: [],
@@ -100,18 +100,18 @@ export default {
       products: [],
       cartItems: JSON.parse(localStorage.getItem("cartItems")) || [],
       favorites: JSON.parse(localStorage.getItem("favorites")) || [],
-      errorMessage: "",
+      errorMessage: ""
     };
   },
   mounted() {
-    axios.get("/Product.json").then((response) => {
+    axios.get("/Product.json").then(response => {
       this.slides = response.data;
       this.products = response.data;
     });
   },
   methods: {
     addToFavorites(product) {
-      const index = this.favorites.findIndex((item) => item.id === product.id);
+      const index = this.favorites.findIndex(item => item.id === product.id);
       if (index === -1) {
         this.favorites.push(product);
       } else {
@@ -120,12 +120,12 @@ export default {
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
     isFavorite(product) {
-      return this.favorites.some((favorite) => favorite.id === product.id);
+      return this.favorites.some(favorite => favorite.id === product.id);
     },
     addToCart(product) {
       const QUANTITY = 1;
       const existingItem = this.cartItems.find(
-        (item) => item.name === product.name && item.size === product.size
+        item => item.name === product.name && item.size === product.size
       );
       if (existingItem) {
         existingItem.quantity += QUANTITY;
@@ -134,27 +134,11 @@ export default {
           name: product.name,
           price: product.price,
           size: product.size,
-          quantity: QUANTITY,
+          quantity: QUANTITY
         });
       }
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
-    },
-  },
-  addToCart(product) {
-    const existingItem = this.cartItems.find(
-      item => item.name === product.name
-    );
-    if (existingItem) {
-      existingItem.quantity++;
-    } else {
-      this.cartItems.push({
-        name: product.name,
-        price: product.price,
-        sizes: product.size,
-        quantity: 1
-      });
     }
-    localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
   }
 };
 </script>
@@ -166,7 +150,7 @@ export default {
 }
 
 /* .icons {
-} */
+  } */
 .hero-title {
   font-size: 2rem;
   padding: 6px;
