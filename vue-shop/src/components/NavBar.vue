@@ -1,4 +1,6 @@
 <template>
+    <!-- Detta är navbaren som är synlig för desktop -->
+
   <v-app-bar class="hidden-sm-and-down">
     <v-toolbar-title>Vue Shop</v-toolbar-title>
     <v-row no-gutters>
@@ -36,10 +38,13 @@
       <v-icon>mdi-cart</v-icon>
     </v-btn>
   </v-app-bar>
+      <!-- navbaren som är synlig för desktop tar slut här -->
+
 </template>
 <script>
 export default {
   data: () => ({
+    searchClosed: true,
     drawer: false,
     links: [
       { name: "hem", route: "/" },

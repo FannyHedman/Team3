@@ -4,7 +4,6 @@
 
     <v-sheet elevation="8" class="mb-14">
       <v-slide-group v-model="model" class="mb-4 pa-4" show-arrows>
-        <!-- Bör loopa product in filteredProducts, men ändrar jag till det just nu renderas ingenting. -->
         <v-slide-group-item
           v-for="product in filteredProducts"
           :key="product.id"
@@ -76,7 +75,7 @@ export default {
       if (!this.searchValue) {
         return this.products;
       } else {
-        //filter skapar en ny array med som evalueras till true i callbacken "product"
+        //filter skapar en ny array  som evalueras till true i callbacken "product"
         const productsArray = this.products.filter(product => {
           const searchTerm = this.searchValue.toLowerCase().trim();
           const productName = product.name.toLowerCase();

@@ -105,7 +105,7 @@ import NavBar from "@/components/NavBar.vue";
 
       <!-- Här är all content som renderas på sidan mellan menyn och footern dvs BODY -->
       <v-main>
-        <!-- Search färdas till alla routes -->
+        <!-- Search ska färdas till alla routes -->
         <router-view :search-term="searchTerm" />
       </v-main>
       <!-- ----------------- RÖR EJ OVAN SEKTION ---------------------------- -->
