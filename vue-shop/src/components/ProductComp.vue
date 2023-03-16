@@ -90,7 +90,7 @@ export default {
       name: "",
       price: "",
       cartItems: [],
-      favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
+      favorites: JSON.parse(localStorage.getItem("favorites") || "[]")
     };
   },
   methods: {
@@ -127,21 +127,22 @@ export default {
     isFavorite(product) {
       return this.favorites.some(favorite => favorite.id === product.id);
     },
-    addToCart(product, quantity) {
-      let cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
-      let index = cartItems.findIndex((item) => item.name === product.name);
-      if (index === -1) {
-        cartItems.push({
+    addToCart(product) {
+      const existingItem = this.cartItems.find(
+        item => item.name === product.name
+      );
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        this.cartItems.push({
           name: product.name,
           price: product.price,
-          quantity: quantity,
+          sizes: product.size,
+          quantity: 1
         });
-      } else {
-        cartItems[index].quantity += quantity;
       }
-      localStorage.setItem("cartItems", JSON.stringify(cartItems));
-      this.quantity = 0;
-    },
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    }
   },
   created() {
     this.fetchData();
