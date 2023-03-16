@@ -159,9 +159,9 @@ export default {
       { name: "hem", route: "/" },
       { name: "dam", route: "/dam" },
       { name: "herr", route: "/herr" },
-      { name: "barn", route: "/barn" }
-    ]
-  })
+      { name: "barn", route: "/barn" },
+    ],
+  }),
 };
 </script>
 

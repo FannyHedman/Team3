@@ -6,13 +6,12 @@
         <v-col v-for="(item, index) in cartItems" :key="index" cols="6" md="3">
           <v-card
             style="
-                background-image: linear-gradient(
-
-                  #000000 0%,
-                  #000000 30%,
+              background-image: linear-gradient(
+                #000000 0%,
+                #000000 30%,
                 #e351fc 100%
-                );
-              "
+              );
+            "
             class="pa-2"
           >
             <v-img src="Team3-images/CartImage/happy.png"></v-img>
@@ -205,8 +204,8 @@
         </v-col>
       </div>
     </v-container>
-  </v-app></template
->
+  </v-app>
+</template>
 <script>
 import axios from "axios";
 export default {
@@ -216,10 +215,10 @@ export default {
   created() {
     axios
       .get("/Product.json")
-      .then(response => {
+      .then((response) => {
         this.products = response.data;
       })
-      .catch(error => {
+      .catch((error) => {
         console.log(error);
       });
     if (localStorage.getItem("cartItems")) {
@@ -231,18 +230,20 @@ export default {
       return this.cartItems.reduce((total, item) => {
         return total + item.price * item.quantity;
       }, 0);
-    }
+    },
   },
   methods: {
     addToCart(sock) {
-      const existingItem = this.cartItems.find(item => item.name === sock.name);
+      const existingItem = this.cartItems.find(
+        (item) => item.name === sock.name
+      );
       if (existingItem) {
         existingItem.quantity++;
       } else {
         this.cartItems.push({
           name: sock.name,
           price: sock.price,
-          quantity: 1
+          quantity: 1,
         });
       }
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
@@ -250,8 +251,8 @@ export default {
     removeItem(index) {
       this.cartItems.splice(index, 1);
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
-    }
-  }
+    },
+  },
 };
 </script>
 
