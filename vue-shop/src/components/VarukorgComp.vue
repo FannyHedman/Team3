@@ -37,7 +37,7 @@
       <v-row class="d-flex justify-center">
         <v-col>
           <div class="d-flex justify-center mt-1">
-            <v-card class="" width="360px">
+            <v-card width="360px">
               <v-card-title class="text-center payment-text">
                 Shipping
               </v-card-title>
@@ -96,7 +96,7 @@
         </v-col>
         <v-col>
           <div class="d-flex justify-center">
-            <v-card class="" width="360px" outlined>
+            <v-card width="360px" outlined>
               <v-card-title class="text-center payment-text">
                 Delivery Options
               </v-card-title>
@@ -148,7 +148,7 @@
           <v-text-field label="* Discount Code" />
         </v-card-text>
         <div class="d-flex">
-          <v-checkbox v-model="checkbox">
+          <v-checkbox>
             <template v-slot:label>
               <div>
                 agree to our
@@ -186,7 +186,7 @@
           </v-btn>
         </v-card-actions>
         <v-col cols="auto">
-          <v-dialog transition="" width="auto">
+          <v-dialog width="auto">
             <template v-slot:activator="{ props }">
               <v-card-actions>
                 <v-btn color="purple-darken-2" variant="outlined" v-bind="props"
