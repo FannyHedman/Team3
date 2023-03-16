@@ -3,6 +3,9 @@
     <!-- Detta är navbaren som är synlig för desktop -->
     <v-app-bar class="hidden-sm-and-down">
       <v-toolbar-title>Vue Shop</v-toolbar-title>
+      <v-btn @click="toggleTheme" icon size="small">
+        <v-icon>mdi-theme-light-dark</v-icon>
+      </v-btn>
       <v-row no-gutters>
         <v-btn
           :href="`${link.route}`"
@@ -75,22 +78,6 @@
           >
           </v-list-item>
           <v-list-item
-            :to="{ name: 'About' }"
-            prepend-icon="mdi-book-information-variant"
-            title="About"
-            value="about"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
-            :to="{ name: 'Kontakt' }"
-            prepend-icon="mdi-account-box-outline"
-            title="Kontakt"
-            value="kontakt"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
             :to="{ name: 'Varukorg' }"
             prepend-icon="mdi mdi-cart-outline"
             title="Varukorg"
@@ -104,6 +91,9 @@
             value="favo"
             exact
           ></v-list-item>
+          <v-btn @click="toggleTheme" icon size="small">
+            <v-icon>mdi-theme-light-dark</v-icon>
+          </v-btn>
         </v-list>
       </v-navigation-drawer>
       <!-- menyn som kommer ut från vänster tar slut här -->
@@ -166,6 +156,8 @@
 </template>
 
 <script>
+import { useTheme } from "vuetify";
+
 export default {
   data: () => ({
     searchClosed: true,
@@ -174,11 +166,19 @@ export default {
       { name: "hem", route: "/" },
       { name: "dam", route: "/dam" },
       { name: "herr", route: "/herr" },
-      { name: "barn", route: "/barn" },
-      { name: "about", route: "/about" },
-      { name: "kontakt", route: "/kontakt" },
-    ],
+      { name: "barn", route: "/barn" }
+    ]
   }),
+  setup() {
+    const theme = useTheme();
+    return {
+      theme,
+      toggleTheme: () =>
+        (theme.global.name.value = theme.global.current.value.dark
+          ? "light"
+          : "dark")
+    };
+  }
 };
 </script>
 
