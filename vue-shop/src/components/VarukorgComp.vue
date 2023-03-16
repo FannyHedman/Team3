@@ -186,7 +186,7 @@
           </v-btn>
         </v-card-actions>
         <v-col cols="auto">
-          <v-dialog transition="" width="auto">
+          <v-dialog width="auto">
             <template v-slot:activator="{ props }">
               <v-card-actions>
                 <v-btn color="purple-darken-2" variant="outlined" v-bind="props"
