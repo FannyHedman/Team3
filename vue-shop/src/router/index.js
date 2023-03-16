@@ -1,7 +1,5 @@
 // Composables
-import TestCompVue from "@/components/TestComp.vue";
 import { createRouter, createWebHistory } from "vue-router";
-
 const routes = [
   {
     path: "/",
@@ -32,29 +30,14 @@ const routes = [
         component: () => import("@/views/BarnView.vue"),
       },
       {
-        path: "/about",
-        name: "About",
-        component: () => import("@/views/AboutView.vue"),
-      },
-      {
-        path: "/kontakt",
-        name: "Kontakt",
-        component: () => import("@/views/KontaktView.vue"),
-      },
-      {
         path: "/varukorg",
         name: "Varukorg",
         component: () => import("@/views/VarukorgView.vue"),
       },
       {
-        path: "/product",
-        name: "Product",
-        component: () => import("@/views/ProductView.vue"),
-      },
-      {
         path: "/product/:id",
         name: "Productdetails",
-        component: TestCompVue,
+        component: () => import("@/views/ProductView.vue"),
       },
       {
         path: "/favo",
@@ -64,10 +47,8 @@ const routes = [
     ],
   },
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
-
 export default router;

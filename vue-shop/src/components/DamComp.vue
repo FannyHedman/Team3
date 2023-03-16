@@ -19,7 +19,7 @@
         </v-list>
       </v-menu>
 
-      <v-menu class="filterButtons">
+      <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" class="mb-5"> PRICE </v-btn>
         </template>
@@ -125,7 +125,6 @@ export default {
       this.products = response.data;
     });
   },
-  computed: {},
   methods: {
     addToFavorites(product) {
       let index = this.favorites.findIndex((item) => item.id === product.id);
@@ -140,19 +139,19 @@ export default {
     isFavorite(product) {
       return this.favorites.some((favorite) => favorite.id === product.id);
     },
-    filterByColor(colors) {
+    filterByColor(colorFilters) {
       this.products = Product;
-      if (colors !== "All") {
+      if (colorFilters !== "All") {
         this.products = this.products.filter((product) => {
-          return product.color === colors;
+          return product.color === colorFilters;
         });
       }
     },
-    filterByPrice(price) {
+    filterByPrice(priceFilters) {
       this.products = Product;
-      if (price !== "All") {
+      if (priceFilters !== "All") {
         this.products = this.products.filter((product) => {
-          return product.price === price;
+          return product.price === priceFilters;
         });
       }
     },

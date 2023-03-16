@@ -26,12 +26,17 @@
       <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
         <v-icon>mdi-heart</v-icon>
       </v-btn>
-      <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
+      <v-btn
+        icon
+        :to="{ name: 'Varukorg' }"
+        title="Varukorg"
+        value="varukorg"
+        exact
+      >
         <v-icon>mdi-cart</v-icon>
       </v-btn>
     </v-app-bar>
     <!-- navbaren som är synlig för desktop tar slut här -->
-
     <!-- Detta är det som finns innuti menyn som kommer ut från vänster  -->
     <v-app id="inspire">
       <v-navigation-drawer v-model="drawer" disable-resize-watcher>
@@ -69,30 +74,6 @@
           >
           </v-list-item>
           <v-list-item
-            :to="{ name: 'About' }"
-            prepend-icon="mdi-book-information-variant"
-            title="About"
-            value="about"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
-            :to="{ name: 'Kontakt' }"
-            prepend-icon="mdi-account-box-outline"
-            title="Kontakt"
-            value="kontakt"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
-            :to="{ name: 'Product' }"
-            prepend-icon="mdi-account-box-outline"
-            title="Product"
-            value="product"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
             :to="{ name: 'Varukorg' }"
             prepend-icon="mdi mdi-cart-outline"
             title="Varukorg"
@@ -109,12 +90,10 @@
         </v-list>
       </v-navigation-drawer>
       <!-- menyn som kommer ut från vänster tar slut här -->
-
       <!-- Detta är hamburgarmenyn som syns när det är små skärmar -->
       <v-app-bar class="hidden-md-and-up">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         <v-toolbar-title>Vue Shop</v-toolbar-title>
-
         <v-text-field
           @focus="searchClosed = false"
           @blur="searchClosed = true"
@@ -123,22 +102,25 @@
           prepend-inner-icon="mdi-magnify mt-auto w-25"
           :class="{ closed: searchClosed }"
         ></v-text-field>
-
         <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
-        <v-btn icon :to="{ name: 'Varukorg' }" title="Varukorg" value="varukorg" exact>
+        <v-btn
+          icon
+          :to="{ name: 'Varukorg' }"
+          title="Varukorg"
+          value="varukorg"
+          exact
+        >
           <v-icon>mdi-cart</v-icon>
         </v-btn>
       </v-app-bar>
       <!-- hamburgarmenyn som syns när det är små skärmar tar sut här -->
-
       <!-- Här är all content som renderas på sidan mellan menyn och footern dvs BODY -->
       <v-main>
         <router-view />
       </v-main>
       <!-- ----------------- RÖR EJ OVAN SEKTION ---------------------------- -->
-
       <v-footer>
         <v-row justify="center" no-gutters>
           <v-btn
@@ -160,7 +142,6 @@
     </v-app>
   </v-responsive>
 </template>
-
 <script>
 export default {
   data: () => ({
@@ -171,13 +152,10 @@ export default {
       { name: "dam", route: "/dam" },
       { name: "herr", route: "/herr" },
       { name: "barn", route: "/barn" },
-      { name: "about", route: "/about" },
-      { name: "kontakt", route: "/kontakt" },
     ],
   }),
 };
 </script>
-
 <style scoped>
 .closed {
   max-width: 25px;
