@@ -1,6 +1,5 @@
 // Composables
 import { createRouter, createWebHistory } from "vue-router";
-
 const routes = [
   {
     path: "/",
@@ -28,7 +27,7 @@ const routes = [
       {
         path: "/barn",
         name: "Barn",
-        component: () => import("@/views/BarnView.vue")
+        component: () => import("@/views/BarnView.vue"),
       },
       {
         path: "/varukorg",
@@ -36,8 +35,8 @@ const routes = [
         component: () => import("@/views/VarukorgView.vue")
       },
       {
-        path: "/product",
-        name: "Product",
+        path: "/product/:id",
+        name: "Productdetails",
         component: () => import("@/views/ProductView.vue")
       },
       {
@@ -48,10 +47,8 @@ const routes = [
     ]
   }
 ];
-
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 });
-
 export default router;

@@ -1,8 +1,39 @@
 <template>
   <v-app>
     <v-container class="mt-10">
-      <h1 class="mt-3 mb-5">DAM</h1>
-      <v-row>
+      <h1 class="mt-3 mb-10">Women</h1>
+
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" class="mb-5 mr-5"> COLORS </v-btn>
+        </template>
+
+        <v-list class="bg-white">
+          <v-list-item
+            v-for="colorFilter in colorFilters"
+            :key="colorFilter"
+            @click="() => filterByColor(colorFilter)"
+          >
+            <v-list-item-title>{{ colorFilter }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+
+      <v-menu>
+        <template v-slot:activator="{ props }">
+          <v-btn v-bind="props" class="mb-5"> PRICE </v-btn>
+        </template>
+        <v-list class="bg-white">
+          <v-list-item
+            v-for="priceFilter in priceFilters"
+            :key="priceFilter"
+            @click="() => filterByPrice(priceFilter)"
+          >
+            <v-list-item-title>{{ priceFilter }}</v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-menu>
+      <v-row align="start" class="products">
         <v-col
           xl="3"
           lg="4"
@@ -11,7 +42,7 @@
           md="4"
           cols="4"
           v-for="product in products.filter(
-            product => product.Gender === 'Dam'
+            (product) => product.Gender === 'Dam'
           )"
           :key="product.Gender"
         >
@@ -38,6 +69,7 @@
                     }}</v-btn
                     ><v-spacer></v-spacer>
                     <v-btn
+                      @click="addToCart(product)"
                       class="mt-3 mb-3 mr-4"
                       variant="outlined"
                       icon="mdi-shopping"
@@ -58,9 +90,9 @@
                     small
                     @click="addToFavorites(product)"
                   >
-                    <!-- <v-icon>{{
-                        isFavorite(product) ? "mdi-heart" : "mdi-heart-outline"
-                      }}</v-icon> -->
+                    <v-icon>{{
+                      isFavorite(product) ? "mdi-heart" : "mdi-heart-outline"
+                    }}</v-icon>
                   </v-btn>
                 </v-card-actions></v-row
               >
@@ -71,15 +103,20 @@
     </v-container>
   </v-app>
 </template>
-
 <script>
 import axios from "axios";
+import Product from "/public/Product.json";
+const colorFilters = ["Purple", "Orange", "Green", "Blue", "All"];
+const priceFilters = [149, 199, "All"];
 
 export default {
   data() {
     return {
-      products: [],
-      favorites: JSON.parse(localStorage.getItem("favorites") || "[]")
+      products: Product,
+      favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
+      colorFilters,
+      priceFilters,
+      cartItems: [],
     };
   },
   mounted() {
@@ -87,6 +124,7 @@ export default {
       this.products = response.data;
     });
   },
+  computed: {},
   methods: {
     addToFavorites(product) {
       let index = this.favorites.findIndex(item => item.id === product.id);
@@ -97,17 +135,47 @@ export default {
       }
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
-
     isFavorite(product) {
-      return this.favorites.some(favorite => favorite.id === product.id);
-    }
-  }
+      return this.favorites.some((favorite) => favorite.id === product.id);
+    },
+    filterByColor(colorFilters) {
+      this.products = Product;
+      if (colorFilters !== "All") {
+        this.products = this.products.filter((product) => {
+          return product.color === colorFilters;
+        });
+      }
+    },
+    filterByPrice(priceFilters) {
+      this.products = Product;
+      if (priceFilters !== "All") {
+        this.products = this.products.filter((product) => {
+          return product.price === priceFilters;
+        });
+      }
+    },
+    addToCart(product) {
+      const existingItem = this.cartItems.find(
+        (item) => item.name === product.name
+      );
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        this.cartItems.push({
+          name: product.name,
+          price: product.price,
+          sizes: product.size,
+          quantity: 1,
+        });
+      }
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+  },
 };
 </script>
-
 <style>
 .r-link {
   text-decoration: none;
-  color: white;
+  color: inherit;
 }
 </style>

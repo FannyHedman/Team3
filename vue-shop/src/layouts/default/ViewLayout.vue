@@ -8,7 +8,6 @@ import NavBar from "@/components/NavBar.vue";
 
     <nav-bar @search-value="getData" />
     <!-- navbaren som är synlig för desktop tar slut här -->
-
     <!-- Detta är det som finns innuti menyn som kommer ut från vänster  -->
     <v-app id="inspire">
       <v-navigation-drawer v-model="drawer" disable-resize-watcher>
@@ -68,10 +67,12 @@ import NavBar from "@/components/NavBar.vue";
             value="favo"
             exact
           ></v-list-item>
+          <v-btn @click="toggleTheme" icon size="small">
+            <v-icon>mdi-theme-light-dark</v-icon>
+          </v-btn>
         </v-list>
       </v-navigation-drawer>
       <!-- menyn som kommer ut från vänster tar slut här -->
-
       <!-- Detta är hamburgarmenyn som syns när det är små skärmar -->
       <v-app-bar class="hidden-md-and-up">
         <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -87,10 +88,16 @@ import NavBar from "@/components/NavBar.vue";
           prepend-inner-icon="mdi-magnify mt-auto w-25"
           :class="{ closed: searchClosed }"
         ></v-text-field>
-
         <v-btn icon :to="{ name: 'favo' }" title="Favoriter" value="favo" exact>
           <v-icon>mdi-heart</v-icon>
         </v-btn>
+        <v-btn
+          icon
+          :to="{ name: 'Varukorg' }"
+          title="Varukorg"
+          value="varukorg"
+          exact
+        >
         <v-btn
           icon
           :to="{ name: 'Varukorg' }"
@@ -102,14 +109,12 @@ import NavBar from "@/components/NavBar.vue";
         </v-btn>
       </v-app-bar>
       <!-- hamburgarmenyn som syns när det är små skärmar tar sut här -->
-
       <!-- Här är all content som renderas på sidan mellan menyn och footern dvs BODY -->
       <v-main>
         <!-- Search ska färdas till alla routes -->
         <router-view :search-term="searchTerm" />
       </v-main>
       <!-- ----------------- RÖR EJ OVAN SEKTION ---------------------------- -->
-
       <v-footer>
         <v-row justify="center" no-gutters>
           <v-btn
@@ -131,8 +136,9 @@ import NavBar from "@/components/NavBar.vue";
     </v-app>
   </v-responsive>
 </template>
-
 <script>
+import { useTheme } from "vuetify";
+
 export default {
   data: () => ({
     searchTerm: "",
@@ -152,7 +158,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .closed {
   max-width: 25px;

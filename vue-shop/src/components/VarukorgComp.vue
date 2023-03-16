@@ -1,140 +1,326 @@
 <template>
-  <h2>VARUKORG</h2>
-  <v-card color="transparent" max-width="900" class="mx-auto">
+  <v-app>
     <v-container>
-      <v-row flat class="mt-10 mb-5" no-gutters>
-        <v-col cols="12">
-          <div v-for="product in products" :key="product.id">
-            <v-card
-              class="my-1"
-              theme="light"
-              style="
-                background-image: linear-gradient(
-                  to right,
-                  #fa709a 0%,
-                  #fee140 100%
-                );
-              "
-            >
-              <div class="d-flex my-3 mx-3">
-                <div class="d-flex flex-wrap">
-                  <v-btn
-                    size="x-small"
-                    color="error"
-                    class="mx-1 elevation-5"
-                    variant="outlined"
-                    icon="mdi-heart"
-                  ></v-btn>
-                  <div class="d-flex flex-column justify-center">
-                    <v-card-title class="text-h4 mx-10">
-                      {{ product.name }}</v-card-title
-                    >
+      <h2 class="text-center ma-6 head-text">SHOPPING CART</h2>
+      <v-row>
+        <v-col v-for="(item, index) in cartItems" :key="index" cols="6" md="3">
+          <v-card
+            style="
+              background-image: linear-gradient(
+                #000000 0%,
+                #000000 30%,
+                #e351fc 100%
+              );
+            "
+            class="pa-2"
+          >
+            <v-img src="Team3-images/CartImage/happy.png"></v-img>
 
-                    <v-card-title class="text-h7 font-weight-medium mx-11">
-                      Storlek: {{ product.size }}</v-card-title
-                    >
-                    <v-card-title class="text-h7 font-weight-medium mx-11">
-                      Pris: {{ product.price }}kr</v-card-title
-                    >
-                  </div>
-                  <v-card-actions>
-                    <v-btn
-                      @click.stop="delProd(product.id)"
-                      class="ms-2 mx-12 elevation-2"
-                      color="white"
-                      size="small"
-                    >
-                      <v-icon>mdi mdi-delete-circle</v-icon>
-                      Ta Bort vara
-                    </v-btn>
-                  </v-card-actions>
-                </div>
+            <v-card-title class="product-text">{{ item.name }}</v-card-title>
+            <v-card-text class="size-text mt-4">
+              <div class="mb-3">Antal: {{ item.quantity }}st</div>
+              <div class="mb-3">Size: {{ item.size }}</div>
+              <div>Price: {{ item.price }} Kr</div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn
+                elevation="24"
+                class="ma-2"
+                color="purple-darken-4"
+                @click="removeItem(index)"
+                >Remove <v-icon end icon="mdi mdi-delete"></v-icon
+              ></v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+      <v-row class="d-flex justify-center">
+        <v-col>
+          <div class="d-flex justify-center mt-1">
+            <v-card class="" width="360px">
+              <v-card-title class="text-center payment-text">
+                Shipping
+              </v-card-title>
+              <v-card-text>
+                <v-text-field label="Name" />
+                <v-text-field label="Street" />
+                <v-text-field label="Zip" />
+                <v-text-field label="City" />
+                <v-text-field label="Phone" />
+                <v-text-field label="Email" />
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-col>
 
-                <v-avatar class="mt-1 ml-16" size="275" rounded="0">
-                  <v-img
-                    :src="product.LargeImage"
-                    width="400"
-                    height="400"
-                  ></v-img>
-                </v-avatar>
-              </div>
+        <v-col>
+          <div class="d-flex justify-center">
+            <v-card width="360px" outlined>
+              <v-card-title class="text-center payment-text">
+                Payment
+              </v-card-title>
+              <v-radio-group>
+                <v-card-text class="d-flex text-center mt-11">
+                  <v-checkbox
+                    value="1"
+                    color="pink-lighten-3"
+                    label="Klarna"
+                  ></v-checkbox>
+                  <v-avatar
+                    size="x-large"
+                    image="Team3-images/CartImage/klarna.png"
+                  ></v-avatar>
+                </v-card-text>
+
+                <v-card-text class="d-flex text-center mt-11">
+                  <v-checkbox
+                    value="2"
+                    color="orange"
+                    label="Visa"
+                  ></v-checkbox>
+                  <v-avatar
+                    size="x-large"
+                    image="Team3-images/CartImage/VisaL.png"
+                  ></v-avatar>
+                </v-card-text>
+                <v-card-text class="d-flex text-center mt-11">
+                  <v-checkbox value="3" label="Swish"></v-checkbox>
+                  <v-avatar
+                    size="x-large"
+                    image="Team3-images/CartImage/swish.jpg"
+                  ></v-avatar>
+                </v-card-text>
+              </v-radio-group>
+            </v-card>
+          </div>
+        </v-col>
+        <v-col>
+          <div class="d-flex justify-center">
+            <v-card class="" width="360px" outlined>
+              <v-card-title class="text-center payment-text">
+                Delivery Options
+              </v-card-title>
+              <v-radio-group>
+                <v-card-text class="d-flex text-center mt-11">
+                  <v-checkbox
+                    value="1"
+                    color="teal-accent-3"
+                    label="Budbee"
+                  ></v-checkbox>
+                  <v-avatar
+                    size="x-large"
+                    image="Team3-images/CartImage/Bud.png"
+                  ></v-avatar>
+                </v-card-text>
+                <v-card-text class="d-flex text-center mt-11">
+                  <v-checkbox
+                    value="2"
+                    color="cyan-accent-4"
+                    label="Post Nord"
+                  ></v-checkbox>
+
+                  <v-avatar
+                    size="x-large"
+                    image="Team3-images/CartImage/post.png"
+                  ></v-avatar>
+                </v-card-text>
+                <v-card-text class="d-flex text-center mt-11">
+                  <v-checkbox
+                    value="3"
+                    color="yellow-accent-4"
+                    label="DHL"
+                  ></v-checkbox>
+                  <v-avatar
+                    size="x-large"
+                    image="Team3-images/CartImage/dhl.png"
+                  ></v-avatar>
+                </v-card-text>
+              </v-radio-group>
             </v-card>
           </div>
         </v-col>
       </v-row>
-    </v-container>
-  </v-card>
-  <div class="d-flex justify-center mb-5">
-    <v-card-actions>
-      <v-btn to="/" color="#F3EDB0" variant="outlined">
-        <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
-        Tillbaka</v-btn
-      >
-    </v-card-actions>
-    <v-card-actions>
-      <v-btn color="#87cefa" variant="outlined">
-        <v-icon class="mx-2" small right>mdi-cart-outline</v-icon>
-        Till Kassa</v-btn
-      >
-    </v-card-actions>
-  </div>
-</template>
 
+      <div>
+        <v-card-text class="d-flex">
+          <v-text-field label="* GiftCard" />
+          <v-spacer />
+          <v-text-field label="* Discount Code" />
+        </v-card-text>
+        <div class="d-flex">
+          <v-checkbox v-model="checkbox">
+            <template v-slot:label>
+              <div>
+                agree to our
+                <v-tooltip location="top">
+                  <template v-slot:activator="{ props }">
+                    <a
+                      target="_blank"
+                      href="https://iths.se"
+                      v-bind="props"
+                      @click.stop
+                    >
+                      terms
+                    </a>
+                  </template>
+                  Opens in new window
+                </v-tooltip>
+              </div>
+            </template>
+          </v-checkbox>
+          <v-spacer />
+          <v-checkbox
+            class="justify-end d-flex"
+            label="Subscribe for news"
+          ></v-checkbox>
+        </div>
+      </div>
+      <h3 class="d-flex justify-center mt-4 amount-text">
+        Total amount: {{ totalAmount }} SEK
+      </h3>
+      <div class="d-flex justify-space-between">
+        <v-card-actions>
+          <v-btn to="/" color="pink-darken-3" variant="outlined">
+            <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
+            Take me home
+          </v-btn>
+        </v-card-actions>
+        <v-col cols="auto">
+          <v-dialog transition="" width="auto">
+            <template v-slot:activator="{ props }">
+              <v-card-actions>
+                <v-btn color="pink-darken-3" variant="outlined" v-bind="props"
+                  ><v-icon class="mx-2" small>mdi mdi-cart-outline</v-icon> Take
+                  my money</v-btn
+                >
+              </v-card-actions>
+            </template>
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-toolbar
+                  class="text-center"
+                  color="purple-darken-1"
+                  title="HELLO BUDDY!!"
+                ></v-toolbar>
+                <v-card-text>
+                  <div class="text-h2 pa-12 text-center">
+                    Thank you for your purchase
+                  </div>
+                  <div class="text-h6 pa-12 text-center">
+                    We will thank you with a 15% discount code for your next
+                    purchase!
+                    <p>Use <span>PARTYFEET15</span> for 15% discount</p>
+                  </div>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn to="/" variant="text" @click="isActive.value = false"
+                    >To homepage</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </v-col>
+      </div>
+    </v-container>
+  </v-app>
+</template>
 <script>
+import axios from "axios";
 export default {
   data() {
-    return {
-      products: {
-        required: true,
-        price: "",
-        name: "",
-        size: "",
-
-        type: Object
-      }
-    };
+    return { name: "", price: "", socks: [], cartItems: [], checkbox: false };
   },
   created() {
-    this.fetchData();
-  },
-  methods: {
-    async fetchData() {
-      try {
-        const res = await fetch("Product.json");
-        const result = await res.json();
-        this.products = result;
-      } catch (error) {
-        console.error(error);
-        this.errorMessage = "Products failed to fetch, please try again!";
-      }
+    axios
+      .get("/Product.json")
+      .then((response) => {
+        this.products = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+    if (localStorage.getItem("cartItems")) {
+      this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
     }
   },
-  delProd(id) {
-    this.products = this.products.filter(product => product.id !== id);
-  }
+  computed: {
+    totalAmount() {
+      return this.cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    },
+  },
+  methods: {
+    addToCart(sock) {
+      const existingItem = this.cartItems.find(
+        (item) => item.name === sock.name
+      );
+      if (existingItem) {
+        existingItem.quantity++;
+      } else {
+        this.cartItems.push({
+          name: sock.name,
+          price: sock.price,
+          quantity: 1,
+        });
+      }
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+    removeItem(index) {
+      this.cartItems.splice(index, 1);
+      localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
+    },
+  },
 };
 </script>
 
 <style scoped>
-@import url("https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rampart+One&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Rubik+Vinyl&display=swap");
-
-h2 {
-  color: #87cefa;
-  /* font-family: "Cutive Mono", monospace; */
-  /* font-family: "Rampart One", cursive; */
-
-  font-family: "Rubik Vinyl", cursive;
-  letter-spacing: 4rem;
-  font-size: 38px;
-  text-align: center;
-  margin-top: 20px;
+@import url("https://fonts.googleapis.com/css2?family=Barrio&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gruppo&display=swap");
+.head-text {
+  font-family: "Barrio", cursive;
+  letter-spacing: 2rem;
+  background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+  font-size: 3em;
+  background-size: 9%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
 }
-h2::first-letter {
-  color: #f6a8b6;
+.product-text {
+  font-size: 22px;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  font-family: "Gruppo", cursive;
 }
-.testcolor {
-  background-color: black;
+
+.size-text {
+  font-size: 22px;
+  color: rgb(0, 0, 0);
+  font-weight: 600;
+  font-family: "Gruppo", cursive;
+}
+
+.amount-text {
+  font-size: 22px;
+
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-family: "Gruppo", cursive;
+  font-size: 1.8em;
+}
+
+.payment-text {
+  font-size: 35px;
+
+  font-weight: bolder;
+  font-family: "Gruppo", cursive;
+}
+span {
+  color: rgb(2, 255, 255);
 }
 </style>
