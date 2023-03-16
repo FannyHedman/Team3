@@ -98,13 +98,6 @@ import NavBar from "@/components/NavBar.vue";
           value="varukorg"
           exact
         >
-        <v-btn
-          icon
-          :to="{ name: 'Varukorg' }"
-          title="Varukorg"
-          value="varukorg"
-          exact
-        >
           <v-icon>mdi-cart</v-icon>
         </v-btn>
       </v-app-bar>

@@ -27,7 +27,7 @@ const routes = [
       {
         path: "/barn",
         name: "Barn",
-        component: () => import("@/views/BarnView.vue"),
+        component: () => import("@/views/BarnView.vue")
       },
       {
         path: "/varukorg",

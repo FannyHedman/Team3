@@ -47,9 +47,9 @@
                     small
                     @click="addToFavorites(product)"
                   >
-                    <!-- <v-icon>{{
+                    <v-icon>{{
                       isFavorite(product) ? "mdi-heart" : "mdi-heart-outline"
-                    }}</v-icon> -->
+                    }}</v-icon>
                   </v-btn>
                 </v-card-actions>
               </v-row>
