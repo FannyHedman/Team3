@@ -234,10 +234,10 @@ export default {
   created() {
     axios
       .get("/Product.json")
-      .then((response) => {
+      .then(response => {
         this.products = response.data;
       })
-      .catch((error) => {
+      .catch(error => {
         console.log(error);
       });
     if (localStorage.getItem("cartItems")) {
@@ -249,20 +249,18 @@ export default {
       return this.cartItems.reduce((total, item) => {
         return total + item.price * item.quantity;
       }, 0);
-    },
+    }
   },
   methods: {
     addToCart(sock) {
-      const existingItem = this.cartItems.find(
-        (item) => item.name === sock.name
-      );
+      const existingItem = this.cartItems.find(item => item.name === sock.name);
       if (existingItem) {
         existingItem.quantity++;
       } else {
         this.cartItems.push({
           name: sock.name,
           price: sock.price,
-          quantity: 1,
+          quantity: 1
         });
       }
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
@@ -270,8 +268,8 @@ export default {
     removeItem(index) {
       this.cartItems.splice(index, 1);
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
-    },
-  },
+    }
+  }
 };
 </script>
 
