@@ -24,7 +24,13 @@
             <div>{{ product.price }} SEK</div>
             <v-rating class="ml-2" :value="3" :readonly="true"></v-rating>
           </v-card-subtitle>
-          <v-select label="Antal" :items="quantity" outlined></v-select>
+          <v-text-field
+            v-model="quantity"
+            type="number"
+            min="0"
+            label="Quantity"
+            outlined
+          ></v-text-field>
           <v-select
             label="Size"
             :items="sizes"
@@ -33,7 +39,12 @@
           ></v-select>
 
           <div v-for="product in getData($route.params.id)" :key="product.id">
-            <v-btn color="#026CAD" class="mt-4 mx-16">ADD TO BASKET</v-btn>
+            <v-btn
+              color="#026CAD"
+              class="mt-4 mx-16"
+              @click="addToCart(product, quantity)"
+              >ADD TO BASKET</v-btn
+            >
             <v-btn
               class="mr-5 mt-5 mb-5"
               icon
@@ -79,8 +90,11 @@ export default {
     return {
       products: [],
       items: [],
-      quantity: ["1", "2", "3", "4"],
+      quantity: 0,
       sizes: [],
+      name: "",
+      price: "",
+      cartItems: [],
       favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
     };
   },
@@ -96,6 +110,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+      if (localStorage.getItem("cartItems")) {
+        this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
+      }
     },
     getData(id) {
       let data = this.products;
@@ -112,9 +129,23 @@ export default {
       }
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
-
     isFavorite(product) {
       return this.favorites.some((favorite) => favorite.id === product.id);
+    },
+    addToCart(product, quantity) {
+      let cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
+      let index = cartItems.findIndex((item) => item.name === product.name);
+      if (index === -1) {
+        cartItems.push({
+          name: product.name,
+          price: product.price,
+          quantity: quantity,
+        });
+      } else {
+        cartItems[index].quantity += quantity;
+      }
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+      this.quantity = 0;
     },
   },
   created() {

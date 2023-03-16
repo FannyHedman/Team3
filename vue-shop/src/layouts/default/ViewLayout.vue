@@ -75,22 +75,6 @@
           >
           </v-list-item>
           <v-list-item
-            :to="{ name: 'About' }"
-            prepend-icon="mdi-book-information-variant"
-            title="About"
-            value="about"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
-            :to="{ name: 'Kontakt' }"
-            prepend-icon="mdi-account-box-outline"
-            title="Kontakt"
-            value="kontakt"
-            exact
-          >
-          </v-list-item>
-          <v-list-item
             :to="{ name: 'Varukorg' }"
             prepend-icon="mdi mdi-cart-outline"
             title="Varukorg"
@@ -175,8 +159,6 @@ export default {
       { name: "dam", route: "/dam" },
       { name: "herr", route: "/herr" },
       { name: "barn", route: "/barn" },
-      { name: "about", route: "/about" },
-      { name: "kontakt", route: "/kontakt" },
     ],
   }),
 };
