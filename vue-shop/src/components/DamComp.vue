@@ -2,10 +2,12 @@
   <v-app>
     <v-container class="mt-10">
       <h1 class="mt-3 mb-10">Women</h1>
+
       <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" class="mb-5 mr-5"> COLORS </v-btn>
         </template>
+
         <v-list class="bg-white">
           <v-list-item
             v-for="colorFilter in colorFilters"
@@ -16,7 +18,8 @@
           </v-list-item>
         </v-list>
       </v-menu>
-      <v-menu class="filterButtons">
+
+      <v-menu>
         <template v-slot:activator="{ props }">
           <v-btn v-bind="props" class="mb-5"> PRICE </v-btn>
         </template>
@@ -105,6 +108,7 @@ import axios from "axios";
 import Product from "/public/Product.json";
 const colorFilters = ["Purple", "Orange", "Green", "Blue", "All"];
 const priceFilters = [149, 199, "All"];
+
 export default {
   data() {
     return {
@@ -134,19 +138,19 @@ export default {
     isFavorite(product) {
       return this.favorites.some((favorite) => favorite.id === product.id);
     },
-    filterByColor(colors) {
+    filterByColor(colorFilters) {
       this.products = Product;
-      if (colors !== "All") {
+      if (colorFilters !== "All") {
         this.products = this.products.filter((product) => {
-          return product.color === colors;
+          return product.color === colorFilters;
         });
       }
     },
-    filterByPrice(price) {
+    filterByPrice(priceFilters) {
       this.products = Product;
-      if (price !== "All") {
+      if (priceFilters !== "All") {
         this.products = this.products.filter((product) => {
-          return product.price === price;
+          return product.price === priceFilters;
         });
       }
     },
@@ -172,6 +176,6 @@ export default {
 <style>
 .r-link {
   text-decoration: none;
-  color: white;
+  color: inherit;
 }
 </style>

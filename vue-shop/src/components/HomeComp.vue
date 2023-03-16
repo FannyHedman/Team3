@@ -90,18 +90,13 @@ export default {
 };
 </script>
 <style scoped>
-.card {
-  background-color: black;
-}
+
 .container {
-  background-color: black;
   height: 100%;
   position: relative;
 }
 
-.overlay {
-  background-color: black;
-}
+
 /* .icons {
 } */
 .hero-title {
