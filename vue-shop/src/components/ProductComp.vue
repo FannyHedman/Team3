@@ -24,16 +24,26 @@
             <div>{{ product.price }} SEK</div>
             <v-rating class="ml-2" :value="3" :readonly="true"></v-rating>
           </v-card-subtitle>
-          <v-select label="Antal" :items="quantity" outlined></v-select>
+          <v-text-field
+            v-model="quantity"
+            type="number"
+            min="0"
+            label="Quantity"
+            outlined
+          ></v-text-field>
           <v-select
             label="Size"
             :items="sizes"
             outlined
             item-text="size"
           ></v-select>
-
           <div v-for="product in getData($route.params.id)" :key="product.id">
-            <v-btn color="#026CAD" class="mt-4 mx-16">ADD TO BASKET</v-btn>
+            <v-btn
+              color="#026CAD"
+              class="mt-4 mx-16"
+              @click="addToCart(product, quantity)"
+              >ADD TO BASKET</v-btn
+            >
             <v-btn
               class="mr-5 mt-5 mb-5"
               icon
@@ -49,8 +59,7 @@
           <v-card>
             <v-card-text>
               <div class="text-subtitle-1">
-                Free deliveries to Sweden within 1-3 working days.
-                <br />
+                Free deliveries to Sweden within 1-3 working days. <br />
                 * Free climate-compensated deliveries
               </div>
             </v-card-text>
@@ -59,9 +68,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" class="pb">
-        <span> Productdescription</span>
-      </v-col>
+      <v-col cols="12" class="pb"> <span> Productdescription</span> </v-col>
     </v-row>
     <v-row v-for="product in getData($route.params.id)" :key="product.id">
       <v-col cols="12" class="pd" md="8" lg="6">
@@ -69,9 +76,8 @@
         <v-card-text>{{ product.info }}</v-card-text>
       </v-col>
     </v-row>
-  </v-container>
-</template>
-
+  </v-container></template
+>
 <script>
 import axios from "axios";
 export default {
@@ -79,7 +85,7 @@ export default {
     return {
       products: [],
       items: [],
-      quantity: ["1", "2", "3", "4"],
+      quantity: 0,
       sizes: [],
       favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
     };
@@ -88,23 +94,26 @@ export default {
     fetchData() {
       axios
         .get("/Product.json")
-        .then((response) => {
+        .then(response => {
           this.products = response.data;
           const selectedProduct = this.getData(this.$route.params.id)[0];
           this.sizes = selectedProduct.size;
         })
-        .catch((error) => {
+        .catch(error => {
           console.log(error);
         });
+      if (localStorage.getItem("cartItems")) {
+        this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
+      }
     },
     getData(id) {
       let data = this.products;
-      return data.filter((item) => {
+      return data.filter(item => {
         return item.id == id;
       });
     },
     addToFavorites(product) {
-      let index = this.favorites.findIndex((item) => item.id === product.id);
+      let index = this.favorites.findIndex(item => item.id === product.id);
       if (index === -1) {
         this.favorites.push(product);
       } else {
@@ -112,13 +121,12 @@ export default {
       }
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
-
     isFavorite(product) {
-      return this.favorites.some((favorite) => favorite.id === product.id);
+      return this.favorites.some(favorite => favorite.id === product.id);
     },
   },
   created() {
     this.fetchData();
-  },
+  }
 };
 </script>

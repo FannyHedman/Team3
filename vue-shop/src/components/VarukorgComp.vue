@@ -6,13 +6,12 @@
         <v-col v-for="(item, index) in cartItems" :key="index" cols="6" md="3">
           <v-card
             style="
-                  background-image: linear-gradient(
-
-                    #000000 0%,
-                    #000000 30%,
-                  #e351fc 100%
-                  );
-                "
+              background-image: linear-gradient(
+                #000000 0%,
+                #000000 30%,
+                #e351fc 100%
+              );
+            "
             class="pa-2"
           >
             <v-img src="Team3-images/CartImage/happy.png"></v-img>
@@ -205,8 +204,9 @@
         </v-col>
       </div>
     </v-container>
-  </v-app></template
->
+  </v-app>
+</template>
+
 <script>
 import axios from "axios";
 export default {
@@ -235,7 +235,10 @@ export default {
   },
   methods: {
     addToCart(sock) {
-      const existingItem = this.cartItems.find(item => item.name === sock.name);
+      const existingItem = this.cartItems.find(
+        (item) => item.name === sock.name
+      );
+
       if (existingItem) {
         existingItem.quantity++;
       } else {
