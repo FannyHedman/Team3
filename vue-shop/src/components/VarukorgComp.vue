@@ -1,33 +1,217 @@
 <template>
   <v-app>
     <v-container>
-      <h2 class="mb-6">Shopping cart</h2>
+      <h2 class="text-center ma-6 head-text">SHOPPING CART</h2>
       <v-row>
-        <v-col v-for="(item, index) in cartItems" :key="index" cols="12" md="6">
-          <v-card class="pa-4">
-            <v-card-title>{{ item.name }}</v-card-title>
-            <v-card-text>
-              <div class="d-flex justify-space-between align-center">
-                <div>Antal: {{ item.quantity }}st</div>
-                <div>{{ item.price }} Kr/st</div>
-              </div>
+        <v-col v-for="(item, index) in cartItems" :key="index" cols="6" md="3">
+          <v-card
+            style="
+                background-image: linear-gradient(
+
+                  #000000 0%,
+                  #000000 30%,
+                #e351fc 100%
+                );
+              "
+            class="pa-2"
+          >
+            <v-img src="Team3-images/CartImage/happy.png"></v-img>
+
+            <v-card-title class="product-text">{{ item.name }}</v-card-title>
+            <v-card-text class="size-text mt-4">
+              <div class="mb-3">Antal: {{ item.quantity }}st</div>
+              <div class="mb-3">Size: {{ item.size }}</div>
+              <div>Price: {{ item.price }} Kr</div>
             </v-card-text>
             <v-card-actions>
-              <v-btn @click="removeItem(index)" color="red" icon size="small">
-                <v-icon>mdi-trash-can</v-icon>
-              </v-btn>
+              <v-btn
+                elevation="24"
+                class="ma-2"
+                color="purple-darken-4"
+                @click="removeItem(index)"
+                >Remove <v-icon end icon="mdi mdi-delete"></v-icon
+              ></v-btn>
             </v-card-actions>
           </v-card>
         </v-col>
       </v-row>
-      <h3 class="mt-6">Totalt: {{ totalAmount }} SEK</h3>
+      <v-row class="d-flex justify-center">
+        <v-col>
+          <div class="d-flex justify-center mt-1">
+            <v-card class="" width="360px">
+              <v-card-title class="text-center payment-text">
+                Shipping
+              </v-card-title>
+              <v-card-text>
+                <v-text-field label="Name" />
+                <v-text-field label="Street" />
+                <v-text-field label="Zip" />
+                <v-text-field label="City" />
+                <v-text-field label="Phone" />
+                <v-text-field label="Email" />
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-col>
+
+        <v-col>
+          <div class="d-flex justify-center">
+            <v-card width="360px" outlined>
+              <v-card-title class="text-center payment-text">
+                Payment
+              </v-card-title>
+
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="pink-lighten-3" label="Klarna"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/klarna.png"
+                ></v-avatar>
+              </v-card-text>
+
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="orange" label="Visa"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/VisaL.png"
+                ></v-avatar>
+              </v-card-text>
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox label="Swish"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/swish.jpg"
+                ></v-avatar>
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-col>
+        <v-col>
+          <div class="d-flex justify-center">
+            <v-card class="" width="360px" outlined>
+              <v-card-title class="text-center payment-text">
+                Delivery Options
+              </v-card-title>
+
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="teal-accent-3" label="Budbee"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/Bud.png"
+                ></v-avatar>
+              </v-card-text>
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox
+                  color="cyan-accent-4"
+                  label="Post Nord"
+                ></v-checkbox>
+
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/post.png"
+                ></v-avatar>
+              </v-card-text>
+              <v-card-text class="d-flex text-center mt-14">
+                <v-checkbox color="yellow-accent-4" label="DHL"></v-checkbox>
+                <v-avatar
+                  size="x-large"
+                  image="Team3-images/CartImage/dhl.png"
+                ></v-avatar>
+              </v-card-text>
+            </v-card>
+          </div>
+        </v-col>
+      </v-row>
+
+      <div>
+        <v-card-text class="d-flex">
+          <v-text-field label="* GiftCard" />
+          <v-spacer />
+          <v-text-field label="* Discount Code" />
+        </v-card-text>
+        <div class="d-flex">
+          <v-checkbox v-model="checkbox">
+            <template v-slot:label>
+              <div>
+                agree to our
+                <v-tooltip location="top">
+                  <template v-slot:activator="{ props }">
+                    <a
+                      target="_blank"
+                      href="https://iths.se"
+                      v-bind="props"
+                      @click.stop
+                    >
+                      terms
+                    </a>
+                  </template>
+                  Opens in new window
+                </v-tooltip>
+              </div>
+            </template>
+          </v-checkbox>
+          <v-spacer />
+          <v-checkbox
+            class="justify-end d-flex"
+            label="Subscribe for news"
+          ></v-checkbox>
+        </div>
+      </div>
+      <h3 class="d-flex justify-center mt-4 amount-text">
+        Total amount: {{ totalAmount }} SEK
+      </h3>
+      <div class="d-flex justify-space-between">
+        <v-card-actions>
+          <v-btn to="/" color="#F3EDB0" variant="outlined">
+            <v-icon class="mx-2" small left>mdi-arrow-left-circle</v-icon>
+            Take me home
+          </v-btn>
+        </v-card-actions>
+        <v-col cols="auto">
+          <v-dialog transition="" width="auto">
+            <template v-slot:activator="{ props }">
+              <v-card-actions>
+                <v-btn color="#F3EDB0" variant="outlined" v-bind="props"
+                  ><v-icon class="mx-2" small>mdi mdi-cart-outline</v-icon> Take
+                  my money</v-btn
+                >
+              </v-card-actions>
+            </template>
+            <template v-slot:default="{ isActive }">
+              <v-card>
+                <v-toolbar
+                  class="text-center"
+                  color="purple-darken-1"
+                  title="HELLO BUDDY!!"
+                ></v-toolbar>
+                <v-card-text>
+                  <div class="text-h2 pa-12 text-center">
+                    Thank you for your purchase
+                  </div>
+                  <div class="text-h6 pa-12 text-center">
+                    We will thank you with a 15% discount code for your next
+                    purchase!
+                    <p>Use <span>PARTYFEET15</span> for 15% discount</p>
+                  </div>
+                </v-card-text>
+                <v-card-actions class="justify-end">
+                  <v-btn to="/" variant="text" @click="isActive.value = false"
+                    >To homepage</v-btn
+                  >
+                </v-card-actions>
+              </v-card>
+            </template>
+          </v-dialog>
+        </v-col>
+      </div>
     </v-container>
-  </v-app>
-</template>
+  </v-app></template
+>
 <script>
 import axios from "axios";
 export default {
   data() {
+    return { name: "", price: "", products: [], cartItems: [] };
     return {
       name: "",
       price: "",
@@ -36,6 +220,24 @@ export default {
     };
   },
   created() {
+    axios
+      .get("/Product.json")
+      .then(response => {
+        this.products = response.data;
+      })
+      .catch(error => {
+        console.log(error);
+      });
+    if (localStorage.getItem("cartItems")) {
+      this.cartItems = JSON.parse(localStorage.getItem("cartItems"));
+    }
+  },
+  computed: {
+    totalAmount() {
+      return this.cartItems.reduce((total, item) => {
+        return total + item.price * item.quantity;
+      }, 0);
+    }
     axios
       .get("/Product.json")
       .then((response) => {
@@ -60,13 +262,14 @@ export default {
       const existingItem = this.cartItems.find(
         (item) => item.name === sock.name
       );
+
       if (existingItem) {
         existingItem.quantity++;
       } else {
         this.cartItems.push({
           name: sock.name,
           price: sock.price,
-          quantity: 1,
+          quantity: 1
         });
       }
       localStorage.setItem("cartItems", JSON.stringify(this.cartItems));
@@ -78,3 +281,50 @@ export default {
   },
 };
 </script>
+<style scoped>
+@import url("https://fonts.googleapis.com/css2?family=Barrio&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Gruppo&display=swap");
+.head-text {
+  font-family: "Barrio", cursive;
+  letter-spacing: 2rem;
+  background-image: linear-gradient(to right, #00dbde 0%, #fc00ff 100%);
+  font-size: 2em;
+  background-size: 9%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+.product-text {
+  font-size: 25px;
+  color: rgb(0, 0, 0);
+  font-weight: bolder;
+  font-family: "Gruppo", cursive;
+}
+
+.subtitle-text {
+  font-size: 20px;
+  color: rgb(255, 255, 255);
+  font-weight: bolder;
+  letter-spacing: 0.3rem;
+  font-family: "Gruppo", cursive;
+}
+.amount-text {
+  font-size: 22px;
+  color: white;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-family: "Gruppo", cursive;
+  font-size: 1.8em;
+  background-image: linear-gradient(to top, #fddb92 0%, #d1fdff 100%);
+  background-size: 100%;
+  background-repeat: repeat;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-background-clip: text;
+  -moz-text-fill-color: transparent;
+}
+</style>
