@@ -176,6 +176,6 @@ export default {
 <style>
 .r-link {
   text-decoration: none;
-  color: white;
+  color: inherit;
 }
 </style>
