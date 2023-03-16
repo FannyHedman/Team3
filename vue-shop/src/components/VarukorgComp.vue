@@ -1,21 +1,29 @@
 <template>
   <v-app>
     <v-container>
-      <h2>Shopping cart</h2>
-      <v-list>
-        <v-list-item v-for="(item, index) in cartItems" :key="index">
-          <v-list-item-title
-            >{{ item.name }} ({{ item.quantity }})</v-list-item-title
-          >
-          <v-list-item-subtitle>{{ item.price }} SEK</v-list-item-subtitle>
-          <v-btn color="red" small @click="removeItem(index)">Remove</v-btn>
-        </v-list-item>
-      </v-list>
-      <h3>Total amount: {{ totalAmount }} SEK</h3>
+      <h2 class="mb-6">Shopping cart</h2>
+      <v-row>
+        <v-col v-for="(item, index) in cartItems" :key="index" cols="12" md="6">
+          <v-card class="pa-4">
+            <v-card-title>{{ item.name }}</v-card-title>
+            <v-card-text>
+              <div class="d-flex justify-space-between align-center">
+                <div>Antal: {{ item.quantity }}st</div>
+                <div>{{ item.price }} Kr/st</div>
+              </div>
+            </v-card-text>
+            <v-card-actions>
+              <v-btn @click="removeItem(index)" color="red" icon size="small">
+                <v-icon>mdi-trash-can</v-icon>
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-col>
+      </v-row>
+      <h3 class="mt-6">Totalt: {{ totalAmount }} SEK</h3>
     </v-container>
   </v-app>
 </template>
-
 <script>
 import axios from "axios";
 
@@ -73,4 +81,3 @@ export default {
   },
 };
 </script>
-

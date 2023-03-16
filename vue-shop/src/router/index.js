@@ -31,16 +31,6 @@ const routes = [
         component: () => import("@/views/BarnView.vue"),
       },
       {
-        path: "/about",
-        name: "About",
-        component: () => import("@/views/AboutView.vue"),
-      },
-      {
-        path: "/kontakt",
-        name: "Kontakt",
-        component: () => import("@/views/KontaktView.vue"),
-      },
-      {
         path: "/varukorg",
         name: "Varukorg",
         component: () => import("@/views/VarukorgView.vue"),
