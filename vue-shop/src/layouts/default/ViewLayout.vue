@@ -160,8 +160,6 @@ export default {
       { name: "dam", route: "/dam" },
       { name: "herr", route: "/herr" },
       { name: "barn", route: "/barn" },
-      { name: "about", route: "/about" },
-      { name: "kontakt", route: "/kontakt" },
     ],
   }),
 };
