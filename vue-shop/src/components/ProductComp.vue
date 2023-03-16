@@ -59,8 +59,7 @@
           <v-card>
             <v-card-text>
               <div class="text-subtitle-1">
-                Free deliveries to Sweden within 1-3 working days.
-                <br />
+                Free deliveries to Sweden within 1-3 working days. <br />
                 * Free climate-compensated deliveries
               </div>
             </v-card-text>
@@ -69,9 +68,7 @@
       </v-col>
     </v-row>
     <v-row>
-      <v-col cols="12" class="pb">
-        <span> Productdescription</span>
-      </v-col>
+      <v-col cols="12" class="pb"> <span> Productdescription</span> </v-col>
     </v-row>
     <v-row v-for="product in getData($route.params.id)" :key="product.id">
       <v-col cols="12" class="pd" md="8" lg="6">
@@ -90,9 +87,6 @@ export default {
       items: [],
       quantity: 0,
       sizes: [],
-      name: "",
-      price: "",
-      cartItems: [],
       favorites: JSON.parse(localStorage.getItem("favorites") || "[]"),
     };
   },
@@ -130,6 +124,24 @@ export default {
     isFavorite(product) {
       return this.favorites.some((favorite) => favorite.id === product.id);
     },
+    getData(id) {
+      let data = this.products;
+      return data.filter((item) => {
+        return item.id == id;
+      });
+    },
+    addToFavorites(product) {
+      let index = this.favorites.findIndex((item) => item.id === product.id);
+      if (index === -1) {
+        this.favorites.push(product);
+      } else {
+        this.favorites.splice(index, 1);
+      }
+      localStorage.setItem("favorites", JSON.stringify(this.favorites));
+    },
+    isFavorite(product) {
+      return this.favorites.some((favorite) => favorite.id === product.id);
+    },
     addToCart(product, quantity) {
       let cartItems = JSON.parse(localStorage.getItem("cartItems") || "[]");
       let index = cartItems.findIndex((item) => item.name === product.name);
@@ -145,6 +157,9 @@ export default {
       localStorage.setItem("cartItems", JSON.stringify(cartItems));
       this.quantity = 0;
     },
+  },
+  created() {
+    this.fetchData();
   },
   created() {
     this.fetchData();

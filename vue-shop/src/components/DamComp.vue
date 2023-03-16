@@ -103,7 +103,6 @@
     </v-container>
   </v-app>
 </template>
-
 <script>
 import axios from "axios";
 import Product from "/public/Product.json";
@@ -125,6 +124,7 @@ export default {
       this.products = response.data;
     });
   },
+  computed: {},
   methods: {
     addToFavorites(product) {
       let index = this.favorites.findIndex((item) => item.id === product.id);
@@ -135,7 +135,6 @@ export default {
       }
       localStorage.setItem("favorites", JSON.stringify(this.favorites));
     },
-
     isFavorite(product) {
       return this.favorites.some((favorite) => favorite.id === product.id);
     },
@@ -174,7 +173,6 @@ export default {
   },
 };
 </script>
-
 <style>
 .r-link {
   text-decoration: none;
